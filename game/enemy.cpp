@@ -2,28 +2,47 @@
 
 Enemy::Enemy()
 {
+	handle = "enemy";
+
 	healStats->health = 10;
-	healStats->maxHealt = 40;
-	healStats->minHealh = 0;
+	healStats->maxHealth = 40;
+	healStats->minHealth = 0;
+	healStats->heal = 1;
+	healStats->maxHeal = 2;
 
 	damageStats->damage = 2;
 	damageStats->maxDamage = 5;
 	damageStats->minDamage = 1;
-
-	handle = "enemy";
 }
 
 Enemy::Enemy(std::string name, int healt, int damage)
 {
+	handle = name;
+
 	healStats->health = healt;
-	healStats->maxHealt = 40;
-	healStats->minHealh = 0;
+	healStats->maxHealth = 40;
+	healStats->minHealth = 0;
+	healStats->heal = 1;
+	healStats->maxHeal = 2;
 
 	damageStats->damage = damage;
 	damageStats->maxDamage = 5;
 	damageStats->minDamage = 1;
+}
 
+Enemy::Enemy(std::string name, int healt, int maxHealth, int minHealth, int heal, int maxHeal, int maxDamage, int minDamage, int damage)
+{
 	handle = name;
+
+	healStats->health = healt;
+	healStats->maxHealth = maxHealth;
+	healStats->minHealth = minHealth;
+	healStats->heal = heal;
+	healStats->maxHeal = maxHeal;
+
+	damageStats->damage = damage;
+	damageStats->maxDamage = maxDamage;
+	damageStats->minDamage = minDamage;
 }
 
 Enemy::~Enemy()
@@ -33,10 +52,20 @@ Enemy::~Enemy()
 
 int Enemy::decrease_health(int dmg)
 {
-	if (healStats != NULL)
-	{
+	if (healStats != NULL) {
+
+		try
+		{
+			if (dmg < 0)
+				throw NegativeDamageException();
+		}
+		catch (NegativeDamageException &e) {
+			std::cout << e.what();
+			return NULL;
+		}
+
 		healStats->health -= dmg;
-		if (healStats->health <= healStats->minHealh)
+		if (healStats->health <= healStats->minHealth)
 		{
 			healStats->health = 0;
 			die();
@@ -47,17 +76,30 @@ int Enemy::decrease_health(int dmg)
 	return NULL;
 }
 
+
 int Enemy::increase_health(int heal)
 {
 	if (healStats != NULL)
 	{
+		try
+		{
+			if (heal < 0)
+				throw NegativeHealException();
+		}
+		catch (NegativeHealException &e) {
+			std::cout << e.what();
+			return NULL;
+		}
+
 		healStats->health += heal;
+		if (healStats->health > healStats->maxHealth)
+			healStats->health = healStats->maxHealth;
 		return healStats->health;
 	}
 	return NULL;
 }
 
-int Enemy::attack(Unit *unit) 
+int Enemy::attack(Unit *unit)
 {
 	if (unit != NULL)
 	{
@@ -67,11 +109,31 @@ int Enemy::attack(Unit *unit)
 	return NULL;
 }
 
+int Enemy::attack(Unit *unit, int dmg)
+{
+	if (unit != NULL)
+	{
+		unit->decrease_health(dmg);
+		return unit->get_health();
+	}
+	return NULL;
+}
+
 int Enemy::heal(Unit *unit)
 {
-	if (unit != NULL) 
+	if (unit != NULL)
 	{
 		unit->increase_health(healStats->heal);
+		return unit->get_health();
+	}
+	return NULL;
+}
+
+int Enemy::heal(Unit *unit, int healAmount)
+{
+	if (unit != NULL)
+	{
+		unit->increase_health(healAmount);
 		return unit->get_health();
 	}
 	return NULL;

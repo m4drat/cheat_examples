@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClInclude Include="enemy.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="gameexceptions.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="unit.h" />
   </ItemGroup>

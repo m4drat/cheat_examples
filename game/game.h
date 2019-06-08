@@ -8,4 +8,5 @@
 #include <string>
 #include <vector>
 
+#include "gameexceptions.h"
 #include "unit.h"
