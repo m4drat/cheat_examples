@@ -1,5 +1,4 @@
 #pragma once
-#include <exception>
 
 struct NegativeHealException : public std::exception
 {

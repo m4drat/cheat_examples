@@ -2,6 +2,7 @@
 
 Player::Player() 
 {
+	isAlive = true;
 	handle = "player";
 
 	healStats->health = 10;
@@ -17,6 +18,7 @@ Player::Player()
 
 Player::Player(std::string name, int healt, int damage)
 {
+	isAlive = true;
 	handle = name;
 
 	healStats->health = healt;
@@ -32,6 +34,7 @@ Player::Player(std::string name, int healt, int damage)
 
 Player::Player(std::string name, int healt, int maxHealth, int minHealth, int heal, int maxHeal, int maxDamage, int minDamage, int damage)
 {
+	isAlive = true;
 	handle = name;
 
 	healStats->health = healt;
@@ -141,5 +144,5 @@ int Player::heal(Unit *unit, int healAmount)
 
 void Player::die() 
 {
-	std::cout << "Player died\n";
+	isAlive = false;
 }

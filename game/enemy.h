@@ -2,6 +2,22 @@
 
 class Enemy : public Unit
 {
+protected:
+	struct Reward
+	{
+		int minGoldReward;
+		int maxGoldReward;
+		int minExpReward;
+		int maxExpReward;
+		int gold;
+		int exp;
+	};
+	Reward *reward;
+
+	std::vector <std::string> classes = { "skelet", "goblin", "gul'", "zombie", "ogr" };
+
+	void init();
+
 public:
 	Enemy(); // Default constructor
 	Enemy(std::string name, int healt, int damage);
@@ -18,4 +34,6 @@ public:
 	int heal(Unit *unit, int healAmount);
 
 	void die();
+	
+	void to_string();
 };

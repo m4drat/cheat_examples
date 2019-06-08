@@ -2,6 +2,7 @@
 
 Enemy::Enemy()
 {
+	isAlive = true;
 	handle = "enemy";
 
 	healStats->health = 10;
@@ -13,10 +14,13 @@ Enemy::Enemy()
 	damageStats->damage = 2;
 	damageStats->maxDamage = 5;
 	damageStats->minDamage = 1;
+
+	init();
 }
 
 Enemy::Enemy(std::string name, int healt, int damage)
 {
+	isAlive = true;
 	handle = name;
 
 	healStats->health = healt;
@@ -28,10 +32,13 @@ Enemy::Enemy(std::string name, int healt, int damage)
 	damageStats->damage = damage;
 	damageStats->maxDamage = 5;
 	damageStats->minDamage = 1;
+	
+	init();
 }
 
 Enemy::Enemy(std::string name, int healt, int maxHealth, int minHealth, int heal, int maxHeal, int maxDamage, int minDamage, int damage)
 {
+	isAlive = true;
 	handle = name;
 
 	healStats->health = healt;
@@ -43,17 +50,29 @@ Enemy::Enemy(std::string name, int healt, int maxHealth, int minHealth, int heal
 	damageStats->damage = damage;
 	damageStats->maxDamage = maxDamage;
 	damageStats->minDamage = minDamage;
+	
+	init();
+}
+
+void Enemy::init() {
+	reward = new Reward;
+
+	reward->minGoldReward = 10;
+	reward->maxGoldReward = 100;
+	reward->minExpReward = 1;
+	reward->maxExpReward = 5;
+	reward->gold = rand() % reward->maxGoldReward + reward->minGoldReward;
+	reward->exp = rand() % reward->maxExpReward + reward->minExpReward;
 }
 
 Enemy::~Enemy()
 {
-
+	delete reward;
 }
 
 int Enemy::decrease_health(int dmg)
 {
 	if (healStats != NULL) {
-
 		try
 		{
 			if (dmg < 0)
@@ -139,6 +158,12 @@ int Enemy::heal(Unit *unit, int healAmount)
 	return NULL;
 }
 
-void Enemy::die() {
-	std::cout << "Enemy died\n";
+void Enemy::die() 
+{
+	isAlive = false;
+}
+
+void Enemy::to_string()
+{
+
 }

@@ -35,3 +35,8 @@ int Unit::get_damage()
 		return damageStats->damage;
 	return NULL;
 }
+
+bool Unit::get_isAlive()
+{
+	return isAlive;
+}

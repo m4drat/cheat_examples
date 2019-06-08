@@ -2,6 +2,13 @@
 
 class Player : public Unit
 {
+protected:
+	struct Properties
+	{
+		int gold = 0;
+		int exp = 0;
+	};
+
 public:
 	Player(); // Default constructor
 	Player(std::string name, int healt, int damage);
@@ -18,4 +25,6 @@ public:
 	int heal(Unit *unit, int healAmount);
 
 	void die();
+
+	void to_string();
 };
