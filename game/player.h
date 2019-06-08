@@ -8,7 +8,8 @@ public:
 	~Player();
 
 	int decrease_health(int dmg);
-	void die();
+	int increase_health(int heal);
 	int attack(Unit *unit);
 	int heal(Unit *unit);
+	void die();
 };
