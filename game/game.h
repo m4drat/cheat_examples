@@ -5,7 +5,7 @@
 #include <string>
 #include <type_traits>
 #include <exception>
+#include <string>
 #include <vector>
-#include <math.h>
 
 #include "unit.h"

@@ -29,7 +29,7 @@ public:
 	virtual int attack(Unit *unit) = 0; 
 	virtual int heal(Unit *unit) = 0;
 
-	virtual std::string get_handle() = 0;
-	virtual int get_health() = 0;
-	virtual int get_damage() = 0;
+	std::string get_handle();
+	int get_health();
+	int get_damage();
 };

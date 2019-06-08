@@ -1,6 +1,6 @@
 #include "unit.h"
 
-class Player : Unit
+class Player : public Unit
 {
 public:
 	Player(); // Default constructor
@@ -11,8 +11,4 @@ public:
 	void die();
 	int attack(Unit *unit);
 	int heal(Unit *unit);
-
-	std::string get_handle();
-	int get_health();
-	int get_damage();
 };
