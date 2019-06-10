@@ -47,16 +47,20 @@ int main(int argc, char *argv[])
 	for (;;) {
 		update();
 
-		std::cout << "[+] create - crete new Player with random stats\n";
-		std::cout << "[+] fight - with random enemy\n";
-		std::cout << "[+] stats - view your stats\n";
+		std::cout << "* [c]reate - crete new Player with random stats\n";
+		std::cout << "* [f]ight  - with random enemy\n";
+		std::cout << "* [s]tats  - view your stats\n";
+		std::cout << "* [e]xit   - leave game\n";
 		std::cout << "> ";
 		std::cin >> choice;
+		std::cout << '\n';
 
-		if (choice == "create") {
+		if (choice == "create" || choice == "c") {
 			std::string name;
 			std::cout << "[*] Enter player name: ";
 			std::cin >> name;
+			std::cout << '\n';
+
 			player = new Player(name);
 			if (player != NULL) {
 				std::cout << "[*] Player created!\n";
@@ -72,7 +76,7 @@ int main(int argc, char *argv[])
 				std::cout << "[-] Something went horribly wrong...\n";
 			}
 		}
-		else if (choice == "fight") {
+		else if (choice == "fight" || choice == "f") {
 			if (player != NULL) {
 				enemy = new Enemy();
 				if (enemy != NULL) {
@@ -87,10 +91,12 @@ int main(int argc, char *argv[])
 					// While hp of enemy and player isnt null
 					while (player->get_isAlive() && enemy->get_isAlive())
 					{
-						std::cout << "[*] Write 'a' to attack\n";
-						std::cout << "[*] Write 'h' to heal\n";
-						std::cout << "[*] Write 'r' to run away (you will lose exp and gold)\n> ";
+						std::cout << "* Write [a]ttack to attack enemy\n";
+						std::cout << "* Write [h]eal to heal yourself\n";
+						std::cout << "* Write [r]un away to run away (you will lose exp and gold)\n> ";
 						std::cin >> choice;
+						std::cout << '\n';
+
 						if (choice == "a" || choice == "attack") {
 							player->attack(enemy);
 							std::cout << "[+] You have dealt " + std::to_string(player->get_damage()) + " damage\n";
@@ -149,7 +155,7 @@ int main(int argc, char *argv[])
 				std::cout << "Player is NULL\n\n";
 			}
 		}
-		else if (choice == "stats")
+		else if (choice == "stats" || choice == "s")
 		{
 			if (player != NULL)
 			{
@@ -164,6 +170,10 @@ int main(int argc, char *argv[])
 			else {
 				std::cout << "[-] Player is NULL\n";
 			}
+		}
+		else if (choice == "exit" || choice == "e") {
+			std::cout << "Goodbye!\n";
+			return 0;
 		}
 	}
 
