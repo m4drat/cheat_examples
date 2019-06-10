@@ -2,6 +2,35 @@
 #include "player.h"
 #include "enemy.h"
 
+void show_banner() {
+	std::string introBanner = R"EOF(        _
+       (_)
+       |=|
+       |=|
+   /|__|_|__|\
+  (    ( )    )                Welcome to Emberstorm RPG!
+   \|\/\"/\/|/              >>>>>-------------------------->
+     |  Y  |
+     |  |  |
+     |  |  |
+    _|  |  |
+ __/ |  |  |\
+/  \ |  |  |  \
+   __|  |  |   |
+/\/  |  |  |   |\
+ <   +\ |  |\ />  \
+  >   + \  | LJ    |
+        + \|+  \  < \
+  (O)      +    |    )
+   |             \  /\ 
+ ( | )   (o)      \/  )
+_\\|//__( | )______)_/ 
+        \\|//
+
+)EOF";
+	std::cout << introBanner;
+}
+
 void update() {
 	srand(time(NULL));
 }
@@ -13,6 +42,8 @@ int main(int argc, char *argv[])
 	Enemy *enemy = NULL;
 	Player *player = NULL;
 	
+	show_banner();
+
 	for (;;) {
 		update();
 
@@ -54,7 +85,7 @@ int main(int argc, char *argv[])
 					std::cout << "[*]     Exp:    " + std::to_string(enemy->get_exp()) + "\n";
 
 					// While hp of enemy and player isnt null
-					while (player->get_health() != 0 && enemy->get_health() != 0)
+					while (player->get_isAlive() && enemy->get_isAlive())
 					{
 						std::cout << "[*] Write 'a' to attack\n";
 						std::cout << "[*] Write 'h' to heal\n";
@@ -65,7 +96,7 @@ int main(int argc, char *argv[])
 							std::cout << "[+] You have dealt " + std::to_string(player->get_damage()) + " damage\n";
 							std::cout << "[+] Enemy health: " + std::to_string(enemy->get_health()) + "\n";
 
-							if (enemy->get_health() != 0)
+							if (enemy->get_isAlive())
 							{
 								std::cout << "[*] Enemy attacking you\n";
 								enemy->attack(player);
@@ -95,11 +126,11 @@ int main(int argc, char *argv[])
 							break;
 						}
 					}
-					if (player->get_health() == 0) {
+					if (!player->get_isAlive()) {
 						std::cout << "[-] You died\n";
 						player = NULL;
 					}
-					else if (enemy->get_health() == 0) {
+					else if (!enemy->get_isAlive()) {
 						player->increase_gold(enemy->get_gold());
 						player->increase_exp(enemy->get_exp());
 						std::cout << "[+] You got\n";

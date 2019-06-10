@@ -73,7 +73,6 @@ Player::Player(std::string name, int healt, int maxHealth, int minHealth, int he
 
 Player::~Player()
 {
-
 }
 
 void Player::init()
@@ -253,6 +252,12 @@ int Player::heal(Unit *unit, int healAmount)
 		return unit->get_health();
 	}
 	return NULL;
+}
+
+int Player::equip(Item *item)
+{
+	items.push_back(item);
+	return 0;
 }
 
 void Player::die() 

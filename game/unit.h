@@ -28,7 +28,7 @@ protected:
 	std::string handle;
 	bool isAlive;
 
-	std::vector <Item> items;
+	std::vector <Item *> items; // all items
 
 public:
 	Unit();

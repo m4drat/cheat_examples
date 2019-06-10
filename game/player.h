@@ -31,8 +31,9 @@ public:
 	int heal(Unit *unit);
 	int heal(Unit *unit, int healAmount);
 
-	void die();
+	int equip(Item *item);
 
+	void die();
 	void init();
 
 	int get_gold();
