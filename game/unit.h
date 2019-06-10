@@ -35,7 +35,6 @@ public:
 	virtual int attack(Unit *unit, int dmg) = 0;
 	virtual int heal(Unit *unit) = 0; // use unit default heal value
 	virtual int heal(Unit *unit, int healAmount) = 0;
-	virtual void to_string(void) = 0;
 	virtual void die(void) = 0;
 
 	std::string get_handle();

@@ -10,3 +10,8 @@
 
 #include "gameexceptions.h"
 #include "unit.h"
+
+struct CurrentGame
+{
+
+};

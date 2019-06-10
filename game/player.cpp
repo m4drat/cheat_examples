@@ -2,6 +2,8 @@
 
 Player::Player() 
 {
+	init();
+
 	isAlive = true;
 	handle = "player";
 
@@ -13,6 +15,24 @@ Player::Player()
 
 	damageStats->damage = 2;
 	damageStats->maxDamage = 5;
+	damageStats->minDamage = 1;
+}
+
+Player::Player(std::string name)
+{
+	init();
+
+	isAlive = true;
+	handle = name;
+
+	healStats->health = 22;
+	healStats->maxHealth = 40;
+	healStats->minHealth = 0;
+	healStats->heal = 1;
+	healStats->maxHeal = 5;
+
+	damageStats->damage = 4;
+	damageStats->maxDamage = 7;
 	damageStats->minDamage = 1;
 }
 
@@ -34,6 +54,8 @@ Player::Player(std::string name, int healt, int damage)
 
 Player::Player(std::string name, int healt, int maxHealth, int minHealth, int heal, int maxHeal, int maxDamage, int minDamage, int damage)
 {
+	init();
+
 	isAlive = true;
 	handle = name;
 
@@ -48,9 +70,99 @@ Player::Player(std::string name, int healt, int maxHealth, int minHealth, int he
 	damageStats->minDamage = minDamage;
 }
 
-Player::~Player() 
+Player::~Player()
 {
 
+}
+
+void Player::init()
+{
+	if (properties == NULL)
+	{
+		properties = new Properties;
+		properties->exp = 0;
+		properties->gold = 0;
+	}
+}
+
+int Player::increase_gold(int gold)
+{
+	if (properties != NULL)
+	{
+		try
+		{
+			if (gold < 0)
+				throw NegativeGoldException();
+		}
+		catch (NegativeGoldException &e) {
+			std::cout << e.what();
+			return NULL;
+		}
+		properties->gold += gold;
+		return properties->gold;
+	}
+	return NULL;
+}
+
+int Player::increase_exp(int exp)
+{
+	if (properties != NULL)
+	{
+		try
+		{
+			if (exp < 0)
+				throw NegativeExpException();
+		}
+		catch (NegativeExpException &e) {
+			std::cout << e.what();
+			return NULL;
+		}
+		properties->exp += exp;
+		return properties->exp;
+	}
+	return NULL;
+}
+
+int Player::decrease_gold(int gold)
+{
+	if (properties != NULL)
+	{
+		try
+		{
+			if (gold < 0)
+				throw NegativeGoldException();
+		}
+		catch (NegativeGoldException &e) {
+			std::cout << e.what();
+			return NULL;
+		}
+		properties->gold -= gold;
+		if (properties->gold < 0)
+			properties->gold = 0;
+		return properties->gold;
+	}
+	return NULL;
+}
+
+int Player::decrease_exp(int exp)
+{
+	if (properties != NULL)
+	{
+		try
+		{
+			if (exp < 0)
+				throw NegativeExpException();
+		}
+		catch (NegativeExpException &e) {
+			std::cout << e.what();
+			return NULL;
+		}
+		properties->exp -= exp;
+		if (properties->exp < 0)
+			properties->exp = 0;
+		return properties->exp;
+	}
+	return NULL;
 }
 
 int Player::decrease_health(int dmg)
@@ -145,4 +257,22 @@ int Player::heal(Unit *unit, int healAmount)
 void Player::die() 
 {
 	isAlive = false;
+}
+
+int Player::get_gold()
+{
+	if (properties != NULL)
+	{
+		return properties->gold;
+	}
+	return NULL;
+}
+
+int Player::get_exp()
+{
+	if (properties != NULL)
+	{
+		return properties->exp;
+	}
+	return NULL;
 }

@@ -1,25 +1,28 @@
 #include "enemy.h"
 
-Enemy::Enemy()
+Enemy::Enemy() // generate random enemy
 {
+	init();
+
 	isAlive = true;
-	handle = "enemy";
+	handle = enemies[rand() % 5];
 
-	healStats->health = 10;
-	healStats->maxHealth = 40;
-	healStats->minHealth = 0;
-	healStats->heal = 1;
-	healStats->maxHeal = 2;
+	healStats->maxHealth = 30;
+	healStats->minHealth = 8;
+	healStats->health = rand() % healStats->maxHealth + healStats->minHealth;
 
-	damageStats->damage = 2;
+	healStats->heal = 3;
+	healStats->maxHeal = 5;
+
 	damageStats->maxDamage = 5;
 	damageStats->minDamage = 1;
-
-	init();
+	damageStats->damage = rand() % damageStats->maxDamage + damageStats->minDamage;
 }
 
 Enemy::Enemy(std::string name, int healt, int damage)
 {
+	init();
+
 	isAlive = true;
 	handle = name;
 
@@ -32,12 +35,12 @@ Enemy::Enemy(std::string name, int healt, int damage)
 	damageStats->damage = damage;
 	damageStats->maxDamage = 5;
 	damageStats->minDamage = 1;
-	
-	init();
 }
 
 Enemy::Enemy(std::string name, int healt, int maxHealth, int minHealth, int heal, int maxHeal, int maxDamage, int minDamage, int damage)
 {
+	init();
+
 	isAlive = true;
 	handle = name;
 
@@ -49,9 +52,7 @@ Enemy::Enemy(std::string name, int healt, int maxHealth, int minHealth, int heal
 
 	damageStats->damage = damage;
 	damageStats->maxDamage = maxDamage;
-	damageStats->minDamage = minDamage;
-	
-	init();
+	damageStats->minDamage = minDamage;	
 }
 
 void Enemy::init() {
@@ -163,7 +164,18 @@ void Enemy::die()
 	isAlive = false;
 }
 
-void Enemy::to_string()
+int Enemy::get_gold()
 {
+	if (reward != NULL) {
+		return reward->gold;
+	}
+	return NULL;
+}
 
+int Enemy::get_exp()
+{
+	if (reward != NULL) {
+		return reward->exp;
+	}
+	return NULL;
 }

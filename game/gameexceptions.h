@@ -15,3 +15,19 @@ struct NegativeDamageException : public std::exception
 		return "Negative damage exception\n";
 	}
 };
+
+struct NegativeGoldException : public std::exception
+{
+	const char *what() const throw ()
+	{
+		return "Negative gold exception\n";
+	}
+};
+
+struct NegativeExpException : public std::exception
+{
+	const char *what() const throw ()
+	{
+		return "Negative experience exception\n";
+	}
+};

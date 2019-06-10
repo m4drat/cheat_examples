@@ -8,12 +8,19 @@ protected:
 		int gold = 0;
 		int exp = 0;
 	};
+	Properties *properties = NULL;
 
 public:
 	Player(); // Default constructor
+	Player(std::string name);
 	Player(std::string name, int healt, int damage);
 	Player(std::string name, int healt, int maxHealth, int minHealth, int heal, int maxHeal, int maxDamage, int minDamage, int damage);
 	~Player();
+
+	int increase_gold(int gold);
+	int increase_exp(int exp);
+	int decrease_gold(int gold);
+	int decrease_exp(int exp);
 
 	int decrease_health(int dmg);
 	int increase_health(int heal);
@@ -26,5 +33,8 @@ public:
 
 	void die();
 
-	void to_string();
+	void init();
+
+	int get_gold();
+	int get_exp();
 };

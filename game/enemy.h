@@ -14,7 +14,7 @@ protected:
 	};
 	Reward *reward;
 
-	std::vector <std::string> classes = { "skelet", "goblin", "gul'", "zombie", "ogr" };
+	std::vector <std::string> enemies = { "skelet", "goblin", "gul'", "zombie", "ogr" };
 
 	void init();
 
@@ -34,6 +34,7 @@ public:
 	int heal(Unit *unit, int healAmount);
 
 	void die();
-	
-	void to_string();
+
+	int get_gold();
+	int get_exp();
 };
