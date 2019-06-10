@@ -12,6 +12,7 @@ protected:
 		int gold;
 		int exp;
 	};
+
 	Reward *reward;
 
 	std::vector <std::string> enemies = { "skelet", "goblin", "gul'", "zombie", "ogr" };

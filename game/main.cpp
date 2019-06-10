@@ -65,10 +65,13 @@ int main(int argc, char *argv[])
 							std::cout << "[+] You have dealt " + std::to_string(player->get_damage()) + " damage\n";
 							std::cout << "[+] Enemy health: " + std::to_string(enemy->get_health()) + "\n";
 
-							std::cout << "[*] Enemy attacking you\n";
-							enemy->attack(player);
-							std::cout << "[+] You were dealt " + std::to_string(enemy->get_damage()) + " points of damage\n";
-							std::cout << "[+] Your health: " + std::to_string(player->get_health()) + "\n\n";
+							if (enemy->get_health() != 0)
+							{
+								std::cout << "[*] Enemy attacking you\n";
+								enemy->attack(player);
+								std::cout << "[+] You were dealt " + std::to_string(enemy->get_damage()) + " points of damage\n";
+								std::cout << "[+] Your health: " + std::to_string(player->get_health()) + "\n\n";
+							}
 						}
 						else if (choice == "h" || choice == "heal")
 						{
@@ -112,7 +115,7 @@ int main(int argc, char *argv[])
 				}
 			}
 			else {
-				std::cout << "Player is NULL\n";
+				std::cout << "Player is NULL\n\n";
 			}
 		}
 		else if (choice == "stats")

@@ -11,6 +11,7 @@ protected:
 		int minHealth;
 		int heal;
 		int maxHeal;
+
 	};
 	
 	struct DamageStats

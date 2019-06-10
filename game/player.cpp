@@ -10,6 +10,7 @@ Player::Player()
 	healStats->health = 10;
 	healStats->maxHealth = 40;
 	healStats->minHealth = 0;
+
 	healStats->heal = 1;
 	healStats->maxHeal = 2;
 

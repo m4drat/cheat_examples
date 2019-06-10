@@ -4,19 +4,24 @@ Enemy::Enemy() // generate random enemy
 {
 	init();
 
+	int minHealthRandom = 8;
+	int maxHealthRandom = 30;
+
 	isAlive = true;
 	handle = enemies[rand() % 5];
 
-	healStats->maxHealth = 30;
-	healStats->minHealth = 8;
-	healStats->health = rand() % healStats->maxHealth + healStats->minHealth;
+	healStats->maxHealth = 40;
+	healStats->minHealth = 0;
+	healStats->health = rand() % maxHealthRandom + minHealthRandom;
 
 	healStats->heal = 3;
 	healStats->maxHeal = 5;
 
-	damageStats->maxDamage = 5;
+	int minDamageRandom = 1;
+	int maxDamageRandom = 5;
+	damageStats->maxDamage = 6;
 	damageStats->minDamage = 1;
-	damageStats->damage = rand() % damageStats->maxDamage + damageStats->minDamage;
+	damageStats->damage = rand() % maxDamageRandom + minDamageRandom;
 }
 
 Enemy::Enemy(std::string name, int healt, int damage)
