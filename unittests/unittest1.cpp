@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 
-#include "../game/unit.h"
-#include "../game/player.h"
-#include "../game/enemy.h"
+#include "game.h"
+#include "player.h"
+#include "enemy.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
