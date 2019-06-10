@@ -27,6 +27,9 @@
     <ClCompile Include="unit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gameobject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -42,6 +45,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="gameexceptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameobject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

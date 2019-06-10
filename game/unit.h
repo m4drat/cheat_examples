@@ -1,7 +1,10 @@
 #pragma once
-#include "game.h"
 
-class Unit
+#include "gameobject.h"
+#include "game.h"
+#include "item.h"
+
+class Unit : public GameObject
 {
 protected:
 	struct HealStats
@@ -11,7 +14,6 @@ protected:
 		int minHealth;
 		int heal;
 		int maxHeal;
-
 	};
 	
 	struct DamageStats
@@ -25,6 +27,8 @@ protected:
 	DamageStats *damageStats = NULL;
 	std::string handle;
 	bool isAlive;
+
+	std::vector <Item> items;
 
 public:
 	Unit();
