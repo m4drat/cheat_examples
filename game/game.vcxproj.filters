@@ -19,6 +19,18 @@
     <Filter Include="Source Files\items">
       <UniqueIdentifier>{e9b98643-386a-477f-81f9-c60c8cd69eba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\items\weapons">
+      <UniqueIdentifier>{51857676-6afc-41fe-b633-434e74effeec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\items\potions">
+      <UniqueIdentifier>{2cb27665-e8d2-43b0-9d3e-02be3bda0c75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\items\potions">
+      <UniqueIdentifier>{6e0b436e-1e4f-4b1c-93fa-80f3726e2708}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\items\weapons">
+      <UniqueIdentifier>{e340e166-9318-4e91-8676-bef7780cf876}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,17 +48,26 @@
     <ClCompile Include="gameobject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="potion.cpp">
-      <Filter>Source Files\items</Filter>
-    </ClCompile>
-    <ClCompile Include="sword.cpp">
-      <Filter>Source Files\items</Filter>
-    </ClCompile>
     <ClCompile Include="item.cpp">
       <Filter>Source Files\items</Filter>
     </ClCompile>
     <ClCompile Include="game.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="potion.cpp">
+      <Filter>Source Files\items\potions</Filter>
+    </ClCompile>
+    <ClCompile Include="sword.cpp">
+      <Filter>Source Files\items\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="healingpotion.cpp">
+      <Filter>Source Files\items\potions</Filter>
+    </ClCompile>
+    <ClCompile Include="bow.cpp">
+      <Filter>Source Files\items\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="weapon.cpp">
+      <Filter>Source Files\items\weapons</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -71,11 +92,20 @@
     <ClInclude Include="item.h">
       <Filter>Header Files\items</Filter>
     </ClInclude>
-    <ClInclude Include="potion.h">
-      <Filter>Header Files\items</Filter>
-    </ClInclude>
     <ClInclude Include="sword.h">
-      <Filter>Header Files\items</Filter>
+      <Filter>Header Files\items\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="potion.h">
+      <Filter>Header Files\items\potions</Filter>
+    </ClInclude>
+    <ClInclude Include="healingpotion.h">
+      <Filter>Header Files\items\potions</Filter>
+    </ClInclude>
+    <ClInclude Include="weapon.h">
+      <Filter>Header Files\items\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="bow.h">
+      <Filter>Header Files\items\weapons</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

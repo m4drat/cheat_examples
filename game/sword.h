@@ -1,9 +1,8 @@
 #pragma once
 
-#include "game.h"
-#include "item.h"
+#include "weapon.h"
 
-class Sword : public Item
+class Sword : public Weapon
 {
 protected:
 	void use();

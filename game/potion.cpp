@@ -9,8 +9,3 @@ Potion::~Potion()
 {
 
 }
-
-void Potion::use() 
-{
-
-}
