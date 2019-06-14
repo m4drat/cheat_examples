@@ -4,8 +4,6 @@
 
 class Sword : public Weapon
 {
-protected:
-	void use();
 public:
 	Sword();
 	~Sword();

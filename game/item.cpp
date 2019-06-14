@@ -5,7 +5,22 @@ std::string Item::get_desc()
 	return desc;
 }
 
-std::string Item::get_handle()
+Item::Rarity Item::get_rarity()
 {
-	return handle;
+	return rarity;
+}
+
+std::string Item::get_rarity_str()
+{
+	switch (rarity)
+	{
+		case Item::Rarity::common:
+			return "common";
+		case Item::Rarity::rare:
+			return "rare";
+		case Item::Rarity::epic:
+			return "epic";
+		case Item::Rarity::legendary:
+			return "legendary";
+	}
 }

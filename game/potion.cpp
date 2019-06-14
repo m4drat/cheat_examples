@@ -9,3 +9,7 @@ Potion::~Potion()
 {
 
 }
+
+void Potion::use(Unit *unit)
+{
+}

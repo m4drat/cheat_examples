@@ -1,4 +1,5 @@
 #include "player.h"
+#include "weapon.h"
 
 Player::Player() 
 {
@@ -7,8 +8,8 @@ Player::Player()
 	isAlive = true;
 	handle = "player";
 
-	healStats->health = 10;
-	healStats->maxHealth = 40;
+	healStats->health = 63;
+	healStats->maxHealth = 80;
 	healStats->minHealth = 0;
 
 	healStats->heal = 1;
@@ -26,8 +27,8 @@ Player::Player(std::string name)
 	isAlive = true;
 	handle = name;
 
-	healStats->health = 22;
-	healStats->maxHealth = 40;
+	healStats->health = 63;
+	healStats->maxHealth = 80;
 	healStats->minHealth = 0;
 	healStats->heal = 1;
 	healStats->maxHeal = 5;
@@ -218,7 +219,11 @@ int Player::attack(Unit *unit)
 {
 	if (unit != NULL) 
 	{
-		unit->decrease_health(damageStats->damage);
+		if (activeWeapon != NULL)
+			unit->decrease_health(damageStats->damage + activeWeapon->get_damage());
+		else
+			unit->decrease_health(damageStats->damage);
+
 		return unit->get_health();
 	}
 	return NULL;
@@ -228,7 +233,11 @@ int Player::attack(Unit *unit, int dmg)
 {
 	if (unit != NULL)
 	{
-		unit->decrease_health(dmg);
+		if (activeWeapon != NULL)
+			unit->decrease_health(dmg + activeWeapon->get_damage());
+		else
+			unit->decrease_health(dmg);
+		
 		return unit->get_health();
 	}
 	return NULL;
@@ -254,10 +263,26 @@ int Player::heal(Unit *unit, int healAmount)
 	return NULL;
 }
 
-int Player::equip(Item *item)
+int Player::lift_weapon(Weapon *weapon)
 {
-	items.push_back(item);
-	return 0;
+	Weapon newItem = *weapon;
+	weapons.push_back(&newItem);
+	return weapons.size();
+}
+
+int Player::lift_potion(Potion *potion)
+{
+	Potion newItem = *potion;
+	weapons.push_back(&newItem);
+	return potions.size();
+}
+
+void Player::equip(Weapon *weapon)
+{
+	if (activeWeapon == NULL)
+		delete activeWeapon;
+	Weapon new_weapon = *weapon;
+	activeWeapon = &new_weapon;
 }
 
 void Player::die() 

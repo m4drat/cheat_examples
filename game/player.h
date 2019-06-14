@@ -31,7 +31,9 @@ public:
 	int heal(Unit *unit);
 	int heal(Unit *unit, int healAmount);
 
-	int equip(Item *item);
+	//int lift_weapon(Weapon *item); // add item to inventory
+	//int lift_potion(Potion *potion); // add item to inventory
+	//void equip(Weapon *weapon); // equip weapon
 
 	void die();
 	void init();

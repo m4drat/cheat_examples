@@ -1,7 +1,20 @@
 #include "enemy.h"
+#include "weapon.h"
+#include "bow.h"
+#include "sword.h"
 
-Enemy::Enemy() // generate random enemy
+Enemy::Enemy() // generate random enemy with random item
 {
+	switch (Weapon::random_weapon())
+	{
+		case Weapon::WeaponType::bow:
+			activeWeapon = new Bow();
+			break;
+		case Weapon::WeaponType::sword:
+			activeWeapon = new Sword();
+			break;
+	}
+
 	init();
 
 	int minHealthRandom = 8;
@@ -28,6 +41,8 @@ Enemy::Enemy(std::string name, int healt, int damage)
 {
 	init();
 
+	activeWeapon = NULL;
+
 	isAlive = true;
 	handle = name;
 
@@ -45,6 +60,8 @@ Enemy::Enemy(std::string name, int healt, int damage)
 Enemy::Enemy(std::string name, int healt, int maxHealth, int minHealth, int heal, int maxHeal, int maxDamage, int minDamage, int damage)
 {
 	init();
+
+	activeWeapon = NULL;
 
 	isAlive = true;
 	handle = name;
@@ -73,6 +90,8 @@ void Enemy::init() {
 
 Enemy::~Enemy()
 {
+	if (activeWeapon != NULL)
+		delete activeWeapon;
 	delete reward;
 }
 
@@ -128,7 +147,11 @@ int Enemy::attack(Unit *unit)
 {
 	if (unit != NULL)
 	{
-		unit->decrease_health(damageStats->damage);
+		if (activeWeapon != NULL)
+			unit->decrease_health(damageStats->damage + activeWeapon->get_damage());
+		else
+			unit->decrease_health(damageStats->damage);
+
 		return unit->get_health();
 	}
 	return NULL;
@@ -138,7 +161,11 @@ int Enemy::attack(Unit *unit, int dmg)
 {
 	if (unit != NULL)
 	{
-		unit->decrease_health(dmg);
+		if (activeWeapon != NULL)
+			unit->decrease_health(dmg + activeWeapon->get_damage());
+		else
+			unit->decrease_health(dmg);
+
 		return unit->get_health();
 	}
 	return NULL;

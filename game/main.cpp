@@ -2,39 +2,6 @@
 #include "player.h"
 #include "enemy.h"
 
-void show_banner() {
-	std::string introBanner = R"EOF(        _
-       (_)
-       |=|
-       |=|
-   /|__|_|__|\
-  (    ( )    )                Welcome to Emberstorm RPG!
-   \|\/\"/\/|/              >>>>>-------------------------->
-     |  Y  |
-     |  |  |
-     |  |  |
-    _|  |  |
- __/ |  |  |\
-/  \ |  |  |  \
-   __|  |  |   |
-/\/  |  |  |   |\
- <   +\ |  |\ />  \
-  >   + \  | LJ    |
-        + \|+  \  < \
-  (O)      +    |    )
-   |             \  /\ 
- ( | )   (o)      \/  )
-_\\|//__( | )______)_/ 
-        \\|//
-
-)EOF";
-	std::cout << introBanner;
-}
-
-void update() {
-	srand(time(NULL));
-}
-
 int main(int argc, char *argv[])
 {
 	std::string choice = "";
@@ -47,10 +14,11 @@ int main(int argc, char *argv[])
 	for (;;) {
 		update();
 
-		std::cout << "* [c]reate - crete new Player with random stats\n";
-		std::cout << "* [f]ight  - with random enemy\n";
-		std::cout << "* [s]tats  - view your stats\n";
-		std::cout << "* [e]xit   - leave game\n";
+		std::cout << "* [c]reate    - crete new Player with random stats\n";
+		std::cout << "* [f]ight     - with random enemy\n";
+		std::cout << "* [s]tats     - view your stats\n";
+		std::cout << "* [i]nventory - view your inventory\n";
+		std::cout << "* [e]xit      - leave game\n";
 		std::cout << "> ";
 		std::cin >> choice;
 		std::cout << '\n';
@@ -88,9 +56,17 @@ int main(int argc, char *argv[])
 					std::cout << "[*]     Gold:   " + std::to_string(enemy->get_gold()) + "\n";
 					std::cout << "[*]     Exp:    " + std::to_string(enemy->get_exp()) + "\n";
 
+					if (enemy->get_active_weapon() != NULL)
+					{
+						std::cout << "[*] Enemy weapon: " + enemy->get_active_weapon()->get_type_str() + "\n";
+						std::cout << "[*]     Damage: " + std::to_string(enemy->get_active_weapon()->get_damage()) + "\n";
+						std::cout << "[*]     Rarity: " + enemy->get_active_weapon()->get_rarity_str() + "\n";
+					}
+
 					// While hp of enemy and player isnt null
 					while (player->get_isAlive() && enemy->get_isAlive())
 					{
+						update();
 						std::cout << "* Write [a]ttack to attack enemy\n";
 						std::cout << "* Write [h]eal to heal yourself\n";
 						std::cout << "* Write [r]un away to run away (you will lose exp and gold)\n> ";
@@ -142,6 +118,13 @@ int main(int argc, char *argv[])
 						std::cout << "[+] You got\n";
 						std::cout << "[+]    Gold: " + std::to_string(enemy->get_gold()) + "\n";
 						std::cout << "[+]    Exp:  " + std::to_string(enemy->get_exp()) + "\n";
+
+						if (enemy->get_active_weapon() != NULL)
+						{
+							std::cout << "[+] New weapon: " + enemy->get_active_weapon()->get_type_str() + "\n";
+							std::cout << "[+]     Damage: " + std::to_string(enemy->get_active_weapon()->get_damage()) + "\n";
+							// player->lift_item(enemy->get_active_weapon());
+						}
 						std::cout << "[+] You win\n\n";
 					}
 					delete enemy;
@@ -169,6 +152,33 @@ int main(int argc, char *argv[])
 			}
 			else {
 				std::cout << "[-] Player is NULL\n";
+			}
+		}
+		else if (choice == "inventory" || choice == "i") // FIXME: I DONT KNOW HOW TO MAKE INVENTORY WORK!
+		{
+			if (player != NULL)
+			{
+				std::cout << "[d]isplay - display inventory\n";
+				std::cout << "[e]quip   - equip new item\n";
+				std::cin >> choice;
+
+				if (choice == "d" || choice == "display")
+				{
+					std::cout << "[*] Your inventory\n";
+					// std::cout << player->get_inventory()->size() << std::endl;
+					int counter = 1;
+					//for (Item *item : *(player->get_inventory()))
+					//{
+					//	
+					//}
+				}
+				else if (choice == "e" || choice == "equip")
+				{
+					
+				}
+			}
+			else {
+				std::cout << "[-] Player is NULL!\n";
 			}
 		}
 		else if (choice == "exit" || choice == "e") {
