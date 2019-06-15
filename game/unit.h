@@ -48,6 +48,7 @@ public:
 	int get_heal();
 	int get_damage();
 	bool get_isAlive();
-	// std::vector <Item *>* get_inventory();
+	
+	std::vector <Item *>* get_inventory();
 	Item* get_active_item();
 };

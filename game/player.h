@@ -1,4 +1,7 @@
 #include "unit.h"
+#include "bow.h"
+#include "sword.h"
+#include "healingpotion.h"
 
 class Player : public Unit
 {
@@ -31,8 +34,7 @@ public:
 	int heal(Unit *unit);
 	int heal(Unit *unit, int healAmount);
 
-	int lift_item(Item *item); // add item to inventory
-	//int lift_potion(Potion *potion); // add item to inventory
+	size_t lift_item(Item *item); // add item to inventory
 	void equip(Item *item); // equip weapon
 
 	void die();

@@ -52,7 +52,19 @@ int main(int argc, char *argv[])
 					std::cout << "[*]     Handle: " + enemy->get_handle() + "\n";
 					std::cout << "[*]     Health: " + std::to_string(enemy->get_health()) + "\n";
 					std::cout << "[*]     Heal:   " + std::to_string(enemy->get_heal()) + "\n";
-					std::cout << "[*]     Damage: " + std::to_string(enemy->get_damage()) + "\n";
+					if (enemy->get_active_item() != NULL)
+					{
+						if (Weapon* weapon = dynamic_cast<Weapon *>(enemy->get_active_item())) // If object is typeof weapon
+						{
+							std::cout << "[*]     Damage: " + std::to_string(enemy->get_damage() - weapon->get_damage()) + " (+" + std::to_string(weapon->get_damage()) + ")" + "\n";
+						}
+						else {
+							std::cout << "[*]     Damage: " + std::to_string(enemy->get_damage()) + "\n";
+						}
+					}
+					else {
+						std::cout << "[*]     Damage: " + std::to_string(enemy->get_damage()) + "\n";
+					}
 					std::cout << "[*]     Gold:   " + std::to_string(enemy->get_gold()) + "\n";
 					std::cout << "[*]     Exp:    " + std::to_string(enemy->get_exp()) + "\n";
 
@@ -126,8 +138,8 @@ int main(int argc, char *argv[])
 						{
 							if (Weapon* weapon = dynamic_cast<Weapon *>(enemy->get_active_item())) // If object is typeof weapon
 							{
-								std::cout << "[*] Enemy item: " + weapon->get_type_str() + "\n";
-								std::cout << "[*]     Damage: " + std::to_string(weapon->get_damage()) + "\n";
+								std::cout << "[*] New item: " + weapon->get_type_str() + "\n";
+								std::cout << "[*]   Damage: " + std::to_string(weapon->get_damage()) + "\n";
 							}
 							player->lift_item(enemy->get_active_item());
 						}
@@ -152,7 +164,19 @@ int main(int argc, char *argv[])
 				std::cout << "[*]     Handle: " + player->get_handle() + "\n";
 				std::cout << "[*]     Health: " + std::to_string(player->get_health()) + "\n";
 				std::cout << "[*]     Heal:   " + std::to_string(player->get_heal()) + "\n";
-				std::cout << "[*]     Damage: " + std::to_string(player->get_damage()) + "\n";
+				if (player->get_active_item() != NULL)
+				{
+					if (Weapon* weapon = dynamic_cast<Weapon *>(player->get_active_item())) // If object is typeof weapon
+					{
+						std::cout << "[*]     Damage: " + std::to_string(player->get_damage() - weapon->get_damage()) + " (+" + std::to_string(weapon->get_damage()) + ")" + "\n";
+					}
+					else {
+						std::cout << "[*]     Damage: " + std::to_string(player->get_damage()) + "\n";
+					}
+				}
+				else {
+					std::cout << "[*]     Damage: " + std::to_string(player->get_damage()) + "\n";
+				}
 				std::cout << "[*]     Gold: " + std::to_string(player->get_gold()) + "\n";
 				std::cout << "[*]     Exp: " + std::to_string(player->get_exp()) + "\n\n";
 			}
@@ -167,24 +191,96 @@ int main(int argc, char *argv[])
 				std::cout << "[d]isplay - display inventory\n";
 				std::cout << "[e]quip   - equip new item\n> ";
 				std::cin >> choice;
+				std::cout << "\n";
 
 				if (choice == "d" || choice == "display")
 				{
-					std::cout << "[*] Your inventory\n";
-					// std::cout << player->get_inventory()->size() << std::endl;
+					if (player->get_active_item() != NULL)
+					{
+						std::cout << "[+] Currently selected item\n";
+						if (Bow* bow = dynamic_cast<Bow *>(player->get_active_item()))
+						{
+							std::cout << "  * Type:   " + bow->get_type_str() << "\n";
+							std::cout << "  * Desc:   " + bow->get_desc() + "\n";
+							std::cout << "  * Damage: " + std::to_string(bow->get_damage()) + "\n";
+							std::cout << "  * Rarity: " + bow->get_rarity_str() + "\n";
+						}
+						else if (Sword* sword = dynamic_cast<Sword *>(player->get_active_item()))
+						{
+							std::cout << "  * Type:   " + sword->get_type_str() << "\n";
+							std::cout << "  * Desc:   " + sword->get_desc() + "\n";
+							std::cout << "  * Damage: " + std::to_string(sword->get_damage()) + "\n";
+							std::cout << "  * Rarity: " + sword->get_rarity_str() + "\n";
+						}
+					}
+					else {
+						std::cout << "[-] No item selected\n";
+					}
+
+					std::cout << "[*] Your inventory:\n";
 					int counter = 1;
-					//for (Item *item : *(player->get_inventory()))
-					//{
-					//	
-					//}
+					if (player->get_inventory()->size() == 0)
+					{
+						std::cout << "  Inventory is empty\n";
+					}
+
+					for (Item *item : *(player->get_inventory()))
+					{
+						if (item != NULL)
+						{
+							std::cout << "---------- " + std::to_string(counter) + " ----------\n";
+							if (Bow* bow = dynamic_cast<Bow *>(item))
+							{
+								std::cout << "  * Item:   " + bow->get_type_str() + "\n";
+								std::cout << "  * Desc:   " + bow->get_desc() + "\n";
+								std::cout << "  * Damage: " + std::to_string(bow->get_damage()) + "\n";
+							}
+							else if (Sword* sword = dynamic_cast<Sword *>(item))
+							{
+								std::cout << "  * Item:   " + sword->get_type_str() + "\n";
+								std::cout << "  * Desc:   " + sword->get_desc() + "\n";
+								std::cout << "  * Damage: " + std::to_string(sword->get_damage()) + "\n";
+							}
+						}
+						counter++;
+					}
+					std::cout << "\n";
 				}
 				else if (choice == "e" || choice == "equip")
 				{
-					
+					if (player->get_inventory()->size() != 0)
+					{
+						std::cout << "[+] Select item you want to pick up [1-" + std::to_string(player->get_inventory()->size()) + "]\n> ";
+						std::cin >> choice;
+						std::cout << "\n";
+						if (std::stoi(choice) > 0 
+							&& std::stoi(choice) <= player->get_inventory()->size() 
+							&& (*player->get_inventory())[std::stoi(choice) - 1] != NULL)
+						{
+							if (player->get_active_item() != NULL)
+							{
+								Item *temp;
+								temp = player->get_active_item();
+								player->equip((*player->get_inventory())[std::stoi(choice) - 1]);
+								(*player->get_inventory())[std::stoi(choice) - 1] = temp;
+							}
+							else {
+								player->equip((*player->get_inventory())[std::stoi(choice) - 1]);
+								(*player->get_inventory()).pop_back();
+							}
+							std::cout << "[+] Successfully selected!\n\n";
+						}
+						else {
+							std::cout << "[-] Wrong inventory index\n\n";
+						}
+					}
+					else {
+						std::cout << "[-] Inventory is empty\n\n";
+					}
 				}
 			}
 			else {
-				std::cout << "[-] Player is NULL!\n";
+				std::cout << "[-] Player is NULL!\n\n";
 			}
 		}
 		else if (choice == "exit" || choice == "e") {

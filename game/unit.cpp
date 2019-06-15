@@ -1,4 +1,7 @@
 #include "unit.h"
+#include "bow.h"
+#include "sword.h"
+#include "healingpotion.h"
 
 Unit::Unit() { // Constructor
 	healStats = new HealStats;
@@ -40,8 +43,13 @@ int Unit::get_damage()
 	if (damageStats != NULL) {
 		if (activeItem != NULL)
 		{
-			if (Weapon* weapon = dynamic_cast<Weapon *>(activeItem)) // If object is typeof weapon
-				return damageStats->damage + weapon->get_damage();
+			if (Bow* bow = dynamic_cast<Bow *>(activeItem)) {
+				return damageStats->damage + bow->get_damage();
+			}
+			else if (Sword* sword = dynamic_cast<Sword *>(activeItem))
+			{
+				return damageStats->damage + sword->get_damage();
+			}
 		}
 		return damageStats->damage;
 	}
@@ -53,10 +61,10 @@ bool Unit::get_isAlive()
 	return isAlive;
 }
 
-//std::vector <Item *>* Unit::get_inventory()
-//{
-//	return &items;
-//}
+std::vector <Item *>* Unit::get_inventory()
+{
+	return &items;
+}
 
 Item* Unit::get_active_item()
 {

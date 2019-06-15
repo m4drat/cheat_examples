@@ -87,8 +87,8 @@ void Enemy::init() {
 
 Enemy::~Enemy()
 {
-	if (activeItem != NULL)
-		delete activeItem;
+	 if (activeItem != NULL)
+		 delete activeItem;
 	delete reward;
 }
 

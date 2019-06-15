@@ -220,8 +220,13 @@ int Player::attack(Unit *unit)
 	{
 		if (activeItem != NULL)
 		{
-			if (Weapon* weapon = dynamic_cast<Weapon *>(activeItem)) // If object is typeof weapon
-				unit->decrease_health(damageStats->damage + weapon->get_damage());
+			if (Bow* bow = dynamic_cast<Bow *>(activeItem)) {
+				unit->decrease_health(damageStats->damage + bow->get_damage());
+			}
+			else if (Sword* sword = dynamic_cast<Sword *>(activeItem))
+			{
+				unit->decrease_health(damageStats->damage + sword->get_damage());
+			}
 		}
 		else
 			unit->decrease_health(damageStats->damage);
@@ -237,8 +242,13 @@ int Player::attack(Unit *unit, int dmg)
 	{
 		if (activeItem != NULL)
 		{
-			if (Weapon* weapon = dynamic_cast<Weapon *>(activeItem)) // If object is typeof weapon
-				unit->decrease_health(damageStats->damage + weapon->get_damage());
+			if (Bow* bow = dynamic_cast<Bow *>(activeItem)) {
+				unit->decrease_health(dmg + bow->get_damage());
+			}
+			else if (Sword* sword = dynamic_cast<Sword *>(activeItem))
+			{
+				unit->decrease_health(dmg + sword->get_damage());
+			}
 		}
 		else
 			unit->decrease_health(dmg);
@@ -268,19 +278,32 @@ int Player::heal(Unit *unit, int healAmount)
 	return NULL;
 }
 
-int Player::lift_item(Item *item)
+size_t Player::lift_item(Item *item)
 {
-	Item newItem = *item;
-	items.push_back(&newItem);
+	if (Bow* bow = dynamic_cast<Bow *>(item)) {
+		items.push_back(new Bow(*bow));
+	}
+	else if (Sword* sword = dynamic_cast<Sword *>(item))
+	{
+		items.push_back(new Sword(*sword));
+	}
+	else if (HealPotion* healPotion = dynamic_cast<HealPotion *>(item))
+	{
+		items.push_back(new HealPotion(*healPotion));
+	}
 	return items.size();
 }
 
 void Player::equip(Item *item)
 {
-	if (activeItem == NULL)
-		delete activeItem;
-	Item newItem = *item;
-	activeItem = &newItem;
+	if (Bow* bow = dynamic_cast<Bow *>(item))
+	{
+		activeItem = bow; // Should i create here new Bow? Or I can reuse old one?
+	}
+	else if (Sword* sword = dynamic_cast<Sword *>(item))
+	{
+		activeItem = sword;
+	}
 }
 
 void Player::die() 
