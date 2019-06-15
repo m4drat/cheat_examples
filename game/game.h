@@ -6,6 +6,7 @@
 #include <typeinfo>
 #include <type_traits>
 #include <exception>
+#include <utility>
 #include <string>
 #include <vector>
 #include <list>

@@ -21,4 +21,6 @@ public:
 	std::string get_desc();
 	Item::Rarity get_rarity();
 	std::string get_rarity_str();
+
+	virtual ~Item();
 };

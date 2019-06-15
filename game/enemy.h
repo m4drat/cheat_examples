@@ -1,4 +1,6 @@
 #include "unit.h"
+#include "bow.h"
+#include "sword.h"
 
 class Enemy : public Unit
 {

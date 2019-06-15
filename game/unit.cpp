@@ -9,16 +9,10 @@ Unit::~Unit() { // Destructor
 	delete healStats;
 	delete damageStats;
 
-	for (int i = 0; i < weapons.size(); ++i)
+	for (int i = 0; i < items.size(); ++i)
 	{
-		if (weapons[i] != NULL)
-			delete weapons[i];
-	}
-	
-	for (int i = 0; i < potions.size(); ++i)
-	{
-		if (potions[i] != NULL)
-			delete potions[i];
+		if (items[i] != NULL)
+			delete items[i];
 	}
 }
 
@@ -44,8 +38,11 @@ int Unit::get_heal()
 int Unit::get_damage()
 {
 	if (damageStats != NULL) {
-		if (activeWeapon != NULL)
-			return damageStats->damage + activeWeapon->get_damage();
+		if (activeItem != NULL)
+		{
+			if (Weapon* weapon = dynamic_cast<Weapon *>(activeItem)) // If object is typeof weapon
+				return damageStats->damage + weapon->get_damage();
+		}
 		return damageStats->damage;
 	}
 	return NULL;
@@ -58,12 +55,12 @@ bool Unit::get_isAlive()
 
 //std::vector <Item *>* Unit::get_inventory()
 //{
-//	return &weapons;
+//	return &items;
 //}
 
-Weapon* Unit::get_active_weapon()
+Item* Unit::get_active_item()
 {
-	if (activeWeapon != NULL)
-		return activeWeapon;
+	if (activeItem != NULL)
+		return activeItem;
 	return NULL;
 }

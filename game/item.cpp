@@ -1,5 +1,7 @@
 #include "item.h"
 
+Item::~Item() {}
+
 std::string Item::get_desc()
 {
 	return desc;

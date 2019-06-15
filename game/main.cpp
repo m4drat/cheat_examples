@@ -56,11 +56,14 @@ int main(int argc, char *argv[])
 					std::cout << "[*]     Gold:   " + std::to_string(enemy->get_gold()) + "\n";
 					std::cout << "[*]     Exp:    " + std::to_string(enemy->get_exp()) + "\n";
 
-					if (enemy->get_active_weapon() != NULL)
+					if (enemy->get_active_item() != NULL)
 					{
-						std::cout << "[*] Enemy weapon: " + enemy->get_active_weapon()->get_type_str() + "\n";
-						std::cout << "[*]     Damage: " + std::to_string(enemy->get_active_weapon()->get_damage()) + "\n";
-						std::cout << "[*]     Rarity: " + enemy->get_active_weapon()->get_rarity_str() + "\n";
+						if (Weapon* weapon = dynamic_cast<Weapon *>(enemy->get_active_item())) // If object is typeof weapon
+						{
+							std::cout << "[*] Enemy item: " + weapon->get_type_str() + "\n";
+							std::cout << "[*]     Damage: " + std::to_string(weapon->get_damage()) + "\n";
+						}
+						std::cout << "[*]     Rarity: " + enemy->get_active_item()->get_rarity_str() + "\n";
 					}
 
 					// While hp of enemy and player isnt null
@@ -119,11 +122,14 @@ int main(int argc, char *argv[])
 						std::cout << "[+]    Gold: " + std::to_string(enemy->get_gold()) + "\n";
 						std::cout << "[+]    Exp:  " + std::to_string(enemy->get_exp()) + "\n";
 
-						if (enemy->get_active_weapon() != NULL)
+						if (enemy->get_active_item() != NULL)
 						{
-							std::cout << "[+] New weapon: " + enemy->get_active_weapon()->get_type_str() + "\n";
-							std::cout << "[+]     Damage: " + std::to_string(enemy->get_active_weapon()->get_damage()) + "\n";
-							// player->lift_item(enemy->get_active_weapon());
+							if (Weapon* weapon = dynamic_cast<Weapon *>(enemy->get_active_item())) // If object is typeof weapon
+							{
+								std::cout << "[*] Enemy item: " + weapon->get_type_str() + "\n";
+								std::cout << "[*]     Damage: " + std::to_string(weapon->get_damage()) + "\n";
+							}
+							player->lift_item(enemy->get_active_item());
 						}
 						std::cout << "[+] You win\n\n";
 					}
@@ -159,7 +165,7 @@ int main(int argc, char *argv[])
 			if (player != NULL)
 			{
 				std::cout << "[d]isplay - display inventory\n";
-				std::cout << "[e]quip   - equip new item\n";
+				std::cout << "[e]quip   - equip new item\n> ";
 				std::cin >> choice;
 
 				if (choice == "d" || choice == "display")

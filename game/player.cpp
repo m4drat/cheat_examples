@@ -1,5 +1,4 @@
 #include "player.h"
-#include "weapon.h"
 
 Player::Player() 
 {
@@ -219,8 +218,11 @@ int Player::attack(Unit *unit)
 {
 	if (unit != NULL) 
 	{
-		if (activeWeapon != NULL)
-			unit->decrease_health(damageStats->damage + activeWeapon->get_damage());
+		if (activeItem != NULL)
+		{
+			if (Weapon* weapon = dynamic_cast<Weapon *>(activeItem)) // If object is typeof weapon
+				unit->decrease_health(damageStats->damage + weapon->get_damage());
+		}
 		else
 			unit->decrease_health(damageStats->damage);
 
@@ -233,8 +235,11 @@ int Player::attack(Unit *unit, int dmg)
 {
 	if (unit != NULL)
 	{
-		if (activeWeapon != NULL)
-			unit->decrease_health(dmg + activeWeapon->get_damage());
+		if (activeItem != NULL)
+		{
+			if (Weapon* weapon = dynamic_cast<Weapon *>(activeItem)) // If object is typeof weapon
+				unit->decrease_health(damageStats->damage + weapon->get_damage());
+		}
 		else
 			unit->decrease_health(dmg);
 		
@@ -263,26 +268,19 @@ int Player::heal(Unit *unit, int healAmount)
 	return NULL;
 }
 
-int Player::lift_weapon(Weapon *weapon)
+int Player::lift_item(Item *item)
 {
-	Weapon newItem = *weapon;
-	weapons.push_back(&newItem);
-	return weapons.size();
+	Item newItem = *item;
+	items.push_back(&newItem);
+	return items.size();
 }
 
-int Player::lift_potion(Potion *potion)
+void Player::equip(Item *item)
 {
-	Potion newItem = *potion;
-	weapons.push_back(&newItem);
-	return potions.size();
-}
-
-void Player::equip(Weapon *weapon)
-{
-	if (activeWeapon == NULL)
-		delete activeWeapon;
-	Weapon new_weapon = *weapon;
-	activeWeapon = &new_weapon;
+	if (activeItem == NULL)
+		delete activeItem;
+	Item newItem = *item;
+	activeItem = &newItem;
 }
 
 void Player::die() 

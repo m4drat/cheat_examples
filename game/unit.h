@@ -1,6 +1,8 @@
 #pragma once
 
 #include "gameobject.h"
+#include "weapon.h"
+#include "item.h"
 
 class Unit : public GameObject
 {
@@ -26,9 +28,8 @@ protected:
 	std::string handle;
 	bool isAlive;
 
-	std::vector <Weapon *> weapons; // all weapons
-	std::vector <Potion *> potions; // all potions
-	Weapon *activeWeapon = NULL; // currently avtive item
+	std::vector <Item *> items; // all items
+	Item *activeItem = NULL; // currently acvtive item
 
 public:
 	Unit();
@@ -48,5 +49,5 @@ public:
 	int get_damage();
 	bool get_isAlive();
 	// std::vector <Item *>* get_inventory();
-	Weapon* get_active_weapon();
+	Item* get_active_item();
 };

@@ -1,21 +1,18 @@
 #include "enemy.h"
-#include "weapon.h"
-#include "bow.h"
-#include "sword.h"
 
 Enemy::Enemy() // generate random enemy with random item
 {
+	init();
+
 	switch (Weapon::random_weapon())
 	{
 		case Weapon::WeaponType::bow:
-			activeWeapon = new Bow();
+			activeItem = new Bow();
 			break;
 		case Weapon::WeaponType::sword:
-			activeWeapon = new Sword();
+			activeItem = new Sword();
 			break;
 	}
-
-	init();
 
 	int minHealthRandom = 8;
 	int maxHealthRandom = 30;
@@ -41,7 +38,7 @@ Enemy::Enemy(std::string name, int healt, int damage)
 {
 	init();
 
-	activeWeapon = NULL;
+	activeItem = NULL;
 
 	isAlive = true;
 	handle = name;
@@ -61,7 +58,7 @@ Enemy::Enemy(std::string name, int healt, int maxHealth, int minHealth, int heal
 {
 	init();
 
-	activeWeapon = NULL;
+	activeItem = NULL;
 
 	isAlive = true;
 	handle = name;
@@ -90,8 +87,8 @@ void Enemy::init() {
 
 Enemy::~Enemy()
 {
-	if (activeWeapon != NULL)
-		delete activeWeapon;
+	if (activeItem != NULL)
+		delete activeItem;
 	delete reward;
 }
 
@@ -147,11 +144,14 @@ int Enemy::attack(Unit *unit)
 {
 	if (unit != NULL)
 	{
-		if (activeWeapon != NULL)
-			unit->decrease_health(damageStats->damage + activeWeapon->get_damage());
-		else
+		if (activeItem != NULL)
+		{
+			if (Weapon* weapon = dynamic_cast<Weapon *>(activeItem)) // If object is typeof weapon
+				unit->decrease_health(damageStats->damage + weapon->get_damage());
+		} 
+		else {
 			unit->decrease_health(damageStats->damage);
-
+		}
 		return unit->get_health();
 	}
 	return NULL;
@@ -161,8 +161,11 @@ int Enemy::attack(Unit *unit, int dmg)
 {
 	if (unit != NULL)
 	{
-		if (activeWeapon != NULL)
-			unit->decrease_health(dmg + activeWeapon->get_damage());
+		if (activeItem != NULL)
+			if (Weapon* weapon = dynamic_cast<Weapon *>(activeItem)) // If object is typeof weapon
+			{
+				unit->decrease_health(dmg + weapon->get_damage());
+			}
 		else
 			unit->decrease_health(dmg);
 
