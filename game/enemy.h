@@ -1,6 +1,7 @@
 #include "unit.h"
 #include "bow.h"
 #include "sword.h"
+#include "healingpotion.h"
 
 class Enemy : public Unit
 {

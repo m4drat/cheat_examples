@@ -100,7 +100,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>C:\Users\User\Desktop\simple_cheats\game\source\repos\game\x64\Debug;C:\Users\User\Desktop\simple_cheats\game\source\repos\game\game\x64\Debug\;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>enemy.obj;entity.obj;game.obj;gameobject.obj;item.obj;main.obj;player.obj;potion.obj;sword.obj;unit.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>enemy.obj;entity.obj;game.obj;gameobject.obj;item.obj;main.obj;player.obj;sword.obj;unit.obj;bow.obj;healingpotion.obj;potion.obj;weapon.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

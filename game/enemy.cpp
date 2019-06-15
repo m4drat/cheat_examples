@@ -4,15 +4,22 @@ Enemy::Enemy() // generate random enemy with random item
 {
 	init();
 
-	switch (Weapon::random_weapon())
+	if (rand() % 2 == 0) // generate heal potion
 	{
+		activeItem = new HealPotion();
+	}
+	else { // generate weapon
+		switch (Weapon::random_weapon())
+		{
 		case Weapon::WeaponType::bow:
 			activeItem = new Bow();
 			break;
 		case Weapon::WeaponType::sword:
 			activeItem = new Sword();
 			break;
+		}
 	}
+	
 
 	int minHealthRandom = 8;
 	int maxHealthRandom = 30;
@@ -148,6 +155,8 @@ int Enemy::attack(Unit *unit)
 		{
 			if (Weapon* weapon = dynamic_cast<Weapon *>(activeItem)) // If object is typeof weapon
 				unit->decrease_health(damageStats->damage + weapon->get_damage());
+			else
+				unit->decrease_health(damageStats->damage);
 		} 
 		else {
 			unit->decrease_health(damageStats->damage);
@@ -165,6 +174,9 @@ int Enemy::attack(Unit *unit, int dmg)
 			if (Weapon* weapon = dynamic_cast<Weapon *>(activeItem)) // If object is typeof weapon
 			{
 				unit->decrease_health(dmg + weapon->get_damage());
+			}
+			else {
+				unit->decrease_health(dmg);
 			}
 		else
 			unit->decrease_health(dmg);

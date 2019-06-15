@@ -11,8 +11,8 @@ Player::Player()
 	healStats->maxHealth = 80;
 	healStats->minHealth = 0;
 
-	healStats->heal = 1;
-	healStats->maxHeal = 2;
+	healStats->heal = 0;
+	healStats->maxHeal = 0;
 
 	damageStats->damage = 2;
 	damageStats->maxDamage = 5;
@@ -29,8 +29,8 @@ Player::Player(std::string name)
 	healStats->health = 63;
 	healStats->maxHealth = 80;
 	healStats->minHealth = 0;
-	healStats->heal = 1;
-	healStats->maxHeal = 5;
+	healStats->heal = 0;
+	healStats->maxHeal = 0;
 
 	damageStats->damage = 4;
 	damageStats->maxDamage = 7;
@@ -45,8 +45,8 @@ Player::Player(std::string name, int healt, int damage)
 	healStats->health = healt;
 	healStats->maxHealth = 40;
 	healStats->minHealth = 0;
-	healStats->heal = 1;
-	healStats->maxHeal = 2;
+	healStats->heal = 0;
+	healStats->maxHeal = 0;
 
 	damageStats->damage = damage;
 	damageStats->maxDamage = 5;
@@ -165,6 +165,16 @@ int Player::decrease_exp(int exp)
 	return NULL;
 }
 
+int Player::increase_total_killed()
+{
+	if (properties != NULL)
+	{
+		properties->toltalKilled++;
+		return properties->toltalKilled;
+	}
+	return NULL;
+}
+
 int Player::decrease_health(int dmg)
 {
 	if (healStats != NULL) {
@@ -227,6 +237,9 @@ int Player::attack(Unit *unit)
 			{
 				unit->decrease_health(damageStats->damage + sword->get_damage());
 			}
+			else {
+				unit->decrease_health(damageStats->damage);
+			}
 		}
 		else
 			unit->decrease_health(damageStats->damage);
@@ -248,6 +261,9 @@ int Player::attack(Unit *unit, int dmg)
 			else if (Sword* sword = dynamic_cast<Sword *>(activeItem))
 			{
 				unit->decrease_health(dmg + sword->get_damage());
+			}
+			else {
+				unit->decrease_health(dmg);
 			}
 		}
 		else
@@ -325,6 +341,15 @@ int Player::get_exp()
 	if (properties != NULL)
 	{
 		return properties->exp;
+	}
+	return NULL;
+}
+
+int Player::get_total_killed()
+{
+	if (properties != NULL)
+	{
+		return properties->toltalKilled;
 	}
 	return NULL;
 }

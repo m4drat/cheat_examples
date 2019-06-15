@@ -28,3 +28,8 @@ void HealPotion::use(Unit *unit)
 {
 	unit->heal(unit, healval);
 }
+
+int HealPotion::get_heal_val()
+{
+	return healval;
+}

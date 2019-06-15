@@ -10,6 +10,7 @@ protected:
 	{
 		int gold = 0;
 		int exp = 0;
+		int toltalKilled = 0;
 	};
 	Properties *properties = NULL;
 
@@ -24,6 +25,7 @@ public:
 	int increase_exp(int exp);
 	int decrease_gold(int gold);
 	int decrease_exp(int exp);
+	int increase_total_killed();
 
 	int decrease_health(int dmg);
 	int increase_health(int heal);
@@ -42,4 +44,5 @@ public:
 
 	int get_gold();
 	int get_exp();
+	int get_total_killed();
 };

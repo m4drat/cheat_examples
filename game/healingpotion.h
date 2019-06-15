@@ -10,4 +10,5 @@ public:
 	HealPotion();
 	~HealPotion();
 	void use(Unit *unit);
+	int get_heal_val();
 };
