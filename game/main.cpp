@@ -240,19 +240,12 @@ int main(int argc, char *argv[])
 					if (player->get_active_item() != NULL)
 					{
 						std::cout << "[+] Currently selected item\n";
-						if (Bow* bow = dynamic_cast<Bow *>(player->get_active_item()))
+						if (Weapon* weapon = dynamic_cast<Weapon *>(player->get_active_item()))
 						{
-							std::cout << "  * Type:   " + bow->get_type_str() << "\n";
-							std::cout << "  * Desc:   " + bow->get_desc() + "\n";
-							std::cout << "  * Damage: " + std::to_string(bow->get_damage()) + "\n";
-							std::cout << "  * Rarity: " + bow->get_rarity_str() + "\n";
-						}
-						else if (Sword* sword = dynamic_cast<Sword *>(player->get_active_item()))
-						{
-							std::cout << "  * Type:   " + sword->get_type_str() << "\n";
-							std::cout << "  * Desc:   " + sword->get_desc() + "\n";
-							std::cout << "  * Damage: " + std::to_string(sword->get_damage()) + "\n";
-							std::cout << "  * Rarity: " + sword->get_rarity_str() + "\n";
+							std::cout << "  * Type:   " + weapon->get_type_str() << "\n";
+							std::cout << "  * Desc:   " + weapon->get_desc() + "\n";
+							std::cout << "  * Damage: " + std::to_string(weapon->get_damage()) + "\n";
+							std::cout << "  * Rarity: " + weapon->get_rarity_str() + "\n";
 						}
 					}
 					else {
@@ -271,23 +264,19 @@ int main(int argc, char *argv[])
 						if (item != NULL)
 						{
 							std::cout << "---------- " + std::to_string(counter) + " ----------\n";
-							if (Bow* bow = dynamic_cast<Bow *>(item))
+							if (Weapon* weapon = dynamic_cast<Weapon *>(item))
 							{
-								std::cout << "  * Item:   " + bow->get_type_str() + "\n";
-								std::cout << "  * Desc:   " + bow->get_desc() + "\n";
-								std::cout << "  * Damage: " + std::to_string(bow->get_damage()) + "\n";
-							}
-							else if (Sword* sword = dynamic_cast<Sword *>(item))
-							{
-								std::cout << "  * Item:   " + sword->get_type_str() + "\n";
-								std::cout << "  * Desc:   " + sword->get_desc() + "\n";
-								std::cout << "  * Damage: " + std::to_string(sword->get_damage()) + "\n";
+								std::cout << "  * Item:   " + weapon->get_type_str() + "\n";
+								std::cout << "  * Desc:   " + weapon->get_desc() + "\n";
+								std::cout << "  * Damage: " + std::to_string(weapon->get_damage()) + "\n";
+                                std::cout << "  * Rarity: " + weapon->get_rarity_str() + "\n";
 							}
 							else if (HealPotion* healPotion = dynamic_cast<HealPotion *>(item))
 							{
 								std::cout << "  * Item: healing potion\n";
-								std::cout << "  * Desc: " + healPotion->get_desc() + "\n";
-								std::cout << "  * Heal: " + std::to_string(healPotion->get_heal_val()) + "\n";
+								std::cout << "  * Desc:   " + healPotion->get_desc() + "\n";
+								std::cout << "  * Heal:   " + std::to_string(healPotion->get_heal_val()) + "\n";
+                                std::cout << "  * Rarity: " + healPotion->get_rarity_str() + "\n";
 							}
 						}
 						counter++;
