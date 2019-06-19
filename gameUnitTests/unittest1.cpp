@@ -12,18 +12,18 @@ namespace unittests
 	TEST_CLASS(UnitTest1)
 	{
 	public:
-		
+
 		TEST_METHOD(TestMethod1)
 		{
 			std::string pName = "AAAAAAAA";
 			int pHealth = 20;
 			int pDmg = 2;
 			Player *player = new Player(pName, pHealth, pDmg);
-			
+
 			std::string eName = "BBBBBBBB";
 			int eHealth = 10;
 			int eDmg = 1;
-			Enemy *enemy= new Enemy(eName, eHealth, eDmg);
+			Enemy *enemy = new Enemy(eName, eHealth, eDmg);
 
 			Assert::AreEqual(eHealth - pDmg, player->attack(enemy));
 		}
