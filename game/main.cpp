@@ -6,8 +6,8 @@ int main(int argc, char *argv[])
 {
 	std::string choice = "";
 
-	Enemy *enemy = NULL;
-	Player *player = NULL;
+	Enemy *enemy = nullptr;
+	Player *player = nullptr;
 	
 	show_banner();
 
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 			std::cout << '\n';
 
 			player = new Player(name);
-			if (player != NULL) {
+			if (player != nullptr) {
 				std::cout << "[*] Player created!\n";
 				std::cout << "[*] Your stats\n";
 				std::cout << "[*]     Handle: " + player->get_handle() + "\n";
@@ -46,14 +46,14 @@ int main(int argc, char *argv[])
 			}
 		}
 		else if (choice == "fight" || choice == "f") {
-			if (player != NULL) {
+			if (player != nullptr) {
 				enemy = new Enemy();
-				if (enemy != NULL) {
+				if (enemy != nullptr) {
 					std::cout << "[*] Enemy stats\n";
 					std::cout << "[*]     Handle: " + enemy->get_handle() + "\n";
 					std::cout << "[*]     Health: " + std::to_string(enemy->get_health()) + "\n";
 					std::cout << "[*]     Heal:   " + std::to_string(enemy->get_heal()) + "\n";
-					if (enemy->get_active_item() != NULL)
+					if (enemy->get_active_item() != nullptr)
 					{
 						if (Weapon* weapon = dynamic_cast<Weapon *>(enemy->get_active_item())) // If object is typeof weapon
 						{
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 					std::cout << "[*]     Gold:   " + std::to_string(enemy->get_gold()) + "\n";
 					std::cout << "[*]     Exp:    " + std::to_string(enemy->get_exp()) + "\n";
 
-					if (enemy->get_active_item() != NULL)
+					if (enemy->get_active_item() != nullptr)
 					{
 						if (Weapon* weapon = dynamic_cast<Weapon *>(enemy->get_active_item())) // If object is typeof weapon
 						{
@@ -127,7 +127,7 @@ int main(int argc, char *argv[])
 
 							if (std::stoi(choice) > 0 && std::stoi(choice) <= player->get_inventory()->size())
 							{
-								if ((*player->get_inventory())[std::stoi(choice) - 1] != NULL)
+								if ((*player->get_inventory())[std::stoi(choice) - 1] != nullptr)
 								{
 									if (HealPotion* healPotion = dynamic_cast<HealPotion *>((*player->get_inventory())[std::stoi(choice) - 1]))
 									{
@@ -165,7 +165,7 @@ int main(int argc, char *argv[])
 					}
 					if (!player->get_isAlive()) {
 						std::cout << "[-] You died\n";
-						player = NULL;
+						player = nullptr;
 					}
 					else if (!enemy->get_isAlive()) {
 						player->increase_total_killed();
@@ -175,7 +175,7 @@ int main(int argc, char *argv[])
 						std::cout << "[+]    Gold: " + std::to_string(enemy->get_gold()) + "\n";
 						std::cout << "[+]    Exp:  " + std::to_string(enemy->get_exp()) + "\n";
 
-						if (enemy->get_active_item() != NULL)
+						if (enemy->get_active_item() != nullptr)
 						{
 							if (Weapon* weapon = dynamic_cast<Weapon *>(enemy->get_active_item())) // If object is typeof weapon
 							{
@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
 						std::cout << "[+] You win\n\n";
 					}
 					delete enemy;
-					enemy = NULL;
+					enemy = nullptr;
 				}
 				else {
 					std::cout << "[-] Cannot create enemy\n";
@@ -199,13 +199,13 @@ int main(int argc, char *argv[])
 		}
 		else if (choice == "stats" || choice == "s")
 		{
-			if (player != NULL)
+			if (player != nullptr)
 			{
 				std::cout << "[*] Your stats\n";
 				std::cout << "[*]     Handle: " + player->get_handle() + "\n";
 				std::cout << "[*]     Health: " + std::to_string(player->get_health()) + "\n";
 				std::cout << "[*]     Heal:   " + std::to_string(player->get_heal()) + "\n";
-				if (player->get_active_item() != NULL)
+				if (player->get_active_item() != nullptr)
 				{
 					if (Weapon* weapon = dynamic_cast<Weapon *>(player->get_active_item())) // If object is typeof weapon
 					{
@@ -228,7 +228,7 @@ int main(int argc, char *argv[])
 		}
 		else if (choice == "inventory" || choice == "i") // FIXME: I DONT KNOW HOW TO MAKE INVENTORY WORK!
 		{
-			if (player != NULL)
+			if (player != nullptr)
 			{
 				std::cout << "[d]isplay - display inventory\n";
 				std::cout << "[e]quip   - equip new item\n> ";
@@ -237,7 +237,7 @@ int main(int argc, char *argv[])
 
 				if (choice == "d" || choice == "display")
 				{
-					if (player->get_active_item() != NULL)
+					if (player->get_active_item() != nullptr)
 					{
 						std::cout << "[+] Currently selected item\n";
 						if (Weapon* weapon = dynamic_cast<Weapon *>(player->get_active_item()))
@@ -261,7 +261,7 @@ int main(int argc, char *argv[])
 
 					for (Item *item : *(player->get_inventory()))
 					{
-						if (item != NULL)
+						if (item != nullptr)
 						{
 							std::cout << "---------- " + std::to_string(counter) + " ----------\n";
 							if (Weapon* weapon = dynamic_cast<Weapon *>(item))
@@ -292,14 +292,14 @@ int main(int argc, char *argv[])
 						std::cout << "\n";
 						if (std::stoi(choice) > 0 
 							&& std::stoi(choice) <= player->get_inventory()->size() 
-							&& (*player->get_inventory())[std::stoi(choice) - 1] != NULL)
+							&& (*player->get_inventory())[std::stoi(choice) - 1] != nullptr)
 						{
 							if (HealPotion* healPotion = dynamic_cast<HealPotion *>((*player->get_inventory())[std::stoi(choice) - 1]))
 							{
-								std::cout << "[-] Cannot select heal potion as active item\n [-]Potions can be used only in battle\n\n";
+								std::cout << "[-] Cannot select heal potion as active item\n[-] Potions can be used only in battle\n\n";
 							}
 							else {
-								if (player->get_active_item() != NULL)
+								if (player->get_active_item() != nullptr)
 								{
 									Item *temp;
 									temp = player->get_active_item();

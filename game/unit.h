@@ -23,13 +23,13 @@ protected:
 		int minDamage;
 	};
 
-	HealStats *healStats = NULL;
-	DamageStats *damageStats = NULL;
+	HealStats *healStats = nullptr;
+	DamageStats *damageStats = nullptr;
 	std::string handle;
-	bool isAlive;
+	bool isAlive = false;
 
 	std::vector <Item *> items; // all items
-	Item *activeItem = NULL; // currently acvtive item
+	Item *activeItem = nullptr; // currently acvtive item
 
 public:
 	Unit();

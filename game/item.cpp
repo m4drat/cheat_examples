@@ -25,4 +25,5 @@ std::string Item::get_rarity_str()
 		case Item::Rarity::legendary:
 			return "legendary";
 	}
+	return "none";
 }

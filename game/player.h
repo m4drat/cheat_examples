@@ -12,7 +12,8 @@ protected:
 		int exp = 0;
 		int toltalKilled = 0;
 	};
-	Properties *properties = NULL;
+	Properties *properties = nullptr;
+	size_t signature = 0xdecaadfe;
 
 public:
 	Player(); // Default constructor

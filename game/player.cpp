@@ -77,7 +77,7 @@ Player::~Player()
 
 void Player::init()
 {
-	if (properties == NULL)
+	if (properties == nullptr)
 	{
 		properties = new Properties;
 		properties->exp = 0;
@@ -87,7 +87,7 @@ void Player::init()
 
 int Player::increase_gold(int gold)
 {
-	if (properties != NULL)
+	if (properties != nullptr)
 	{
 		try
 		{
@@ -106,7 +106,7 @@ int Player::increase_gold(int gold)
 
 int Player::increase_exp(int exp)
 {
-	if (properties != NULL)
+	if (properties != nullptr)
 	{
 		try
 		{
@@ -125,7 +125,7 @@ int Player::increase_exp(int exp)
 
 int Player::decrease_gold(int gold)
 {
-	if (properties != NULL)
+	if (properties != nullptr)
 	{
 		try
 		{
@@ -146,7 +146,7 @@ int Player::decrease_gold(int gold)
 
 int Player::decrease_exp(int exp)
 {
-	if (properties != NULL)
+	if (properties != nullptr)
 	{
 		try
 		{
@@ -167,7 +167,7 @@ int Player::decrease_exp(int exp)
 
 int Player::increase_total_killed()
 {
-	if (properties != NULL)
+	if (properties != nullptr)
 	{
 		properties->toltalKilled++;
 		return properties->toltalKilled;
@@ -177,8 +177,7 @@ int Player::increase_total_killed()
 
 int Player::decrease_health(int dmg)
 {
-	if (healStats != NULL) {
-
+	if (healStats != nullptr) {
 		try
 		{
 			if (dmg < 0)
@@ -204,7 +203,7 @@ int Player::decrease_health(int dmg)
 
 int Player::increase_health(int heal) 
 {
-	if (healStats != NULL) 
+	if (healStats != nullptr)
 	{
 		try
 		{
@@ -226,9 +225,9 @@ int Player::increase_health(int heal)
 
 int Player::attack(Unit *unit) 
 {
-	if (unit != NULL) 
+	if (unit != nullptr)
 	{
-		if (activeItem != NULL)
+		if (activeItem != nullptr)
 		{
 			if (Bow* bow = dynamic_cast<Bow *>(activeItem)) {
 				unit->decrease_health(damageStats->damage + bow->get_damage());
@@ -251,9 +250,9 @@ int Player::attack(Unit *unit)
 
 int Player::attack(Unit *unit, int dmg)
 {
-	if (unit != NULL)
+	if (unit != nullptr)
 	{
-		if (activeItem != NULL)
+		if (activeItem != nullptr)
 		{
 			if (Bow* bow = dynamic_cast<Bow *>(activeItem)) {
 				unit->decrease_health(dmg + bow->get_damage());
@@ -276,7 +275,7 @@ int Player::attack(Unit *unit, int dmg)
 
 int Player::heal(Unit *unit)
 {
-	if (unit != NULL) 
+	if (unit != nullptr)
 	{
 		unit->increase_health(healStats->heal);
 		return unit->get_health();
@@ -286,7 +285,7 @@ int Player::heal(Unit *unit)
 
 int Player::heal(Unit *unit, int healAmount)
 {
-	if (unit != NULL)
+	if (unit != nullptr)
 	{
 		unit->increase_health(healAmount);
 		return unit->get_health();
@@ -329,7 +328,7 @@ void Player::die()
 
 int Player::get_gold()
 {
-	if (properties != NULL)
+	if (properties != nullptr)
 	{
 		return properties->gold;
 	}
@@ -338,7 +337,7 @@ int Player::get_gold()
 
 int Player::get_exp()
 {
-	if (properties != NULL)
+	if (properties != nullptr)
 	{
 		return properties->exp;
 	}
@@ -347,7 +346,7 @@ int Player::get_exp()
 
 int Player::get_total_killed()
 {
-	if (properties != NULL)
+	if (properties != nullptr)
 	{
 		return properties->toltalKilled;
 	}

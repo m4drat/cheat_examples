@@ -14,7 +14,7 @@ Unit::~Unit() { // Destructor
 
 	for (int i = 0; i < items.size(); ++i)
 	{
-		if (items[i] != NULL)
+		if (items[i] != nullptr)
 			delete items[i];
 	}
 }
@@ -26,22 +26,22 @@ std::string Unit::get_handle()
 
 int Unit::get_health()
 {
-	if (healStats != NULL)
+	if (healStats != nullptr)
 		return healStats->health;
 	return NULL;
 }
 
 int Unit::get_heal()
 {
-	if (healStats != NULL)
+	if (healStats != nullptr)
 		return healStats->heal;
 	return NULL;
 }
 
 int Unit::get_damage()
 {
-	if (damageStats != NULL) {
-		if (activeItem != NULL)
+	if (damageStats != nullptr) {
+		if (activeItem != nullptr)
 		{
 			if (Bow* bow = dynamic_cast<Bow *>(activeItem)) {
 				return damageStats->damage + bow->get_damage();
@@ -68,7 +68,7 @@ std::vector <Item *>* Unit::get_inventory()
 
 Item* Unit::get_active_item()
 {
-	if (activeItem != NULL)
+	if (activeItem != nullptr)
 		return activeItem;
 	return NULL;
 }

@@ -12,15 +12,16 @@ int main()
 	std::wcout << "Enter process name: ";
 	std::wcin >> psName;
 
-	std::wcout << "Enter your in-game name: ";
-	std::wcin >> inGameName;
-
 	std::wcout << "Searching pids of process with name: " << psName << std::endl;
 
+	int cnt = 0;
 	for (DWORD pid : get_pid_by_name(psName))
 	{
-		std::wcout << "[+] PID: " << pid << std::endl;
+		cnt++;
+		std::wcout << "[+] " << cnt << ". PID: " << pid << std::endl;
 	}
+	if (cnt == 0)
+		std::wcout << "[-] Cannot find any process!\n";
 	
 	std::wcin >> psName;
 	return 0;

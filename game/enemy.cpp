@@ -45,7 +45,7 @@ Enemy::Enemy(std::string name, int healt, int damage)
 {
 	init();
 
-	activeItem = NULL;
+	activeItem = nullptr;
 
 	isAlive = true;
 	handle = name;
@@ -65,7 +65,7 @@ Enemy::Enemy(std::string name, int healt, int maxHealth, int minHealth, int heal
 {
 	init();
 
-	activeItem = NULL;
+	activeItem = nullptr;
 
 	isAlive = true;
 	handle = name;
@@ -94,14 +94,14 @@ void Enemy::init() {
 
 Enemy::~Enemy()
 {
-	 if (activeItem != NULL)
+	 if (activeItem != nullptr)
 		 delete activeItem;
 	delete reward;
 }
 
 int Enemy::decrease_health(int dmg)
 {
-	if (healStats != NULL) {
+	if (healStats != nullptr) {
 		try
 		{
 			if (dmg < 0)
@@ -127,7 +127,7 @@ int Enemy::decrease_health(int dmg)
 
 int Enemy::increase_health(int heal)
 {
-	if (healStats != NULL)
+	if (healStats != nullptr)
 	{
 		try
 		{
@@ -149,9 +149,9 @@ int Enemy::increase_health(int heal)
 
 int Enemy::attack(Unit *unit)
 {
-	if (unit != NULL)
+	if (unit != nullptr)
 	{
-		if (activeItem != NULL)
+		if (activeItem != nullptr)
 		{
 			if (Weapon* weapon = dynamic_cast<Weapon *>(activeItem)) // If object is typeof weapon
 				unit->decrease_health(damageStats->damage + weapon->get_damage());
@@ -168,9 +168,9 @@ int Enemy::attack(Unit *unit)
 
 int Enemy::attack(Unit *unit, int dmg)
 {
-	if (unit != NULL)
+	if (unit != nullptr)
 	{
-		if (activeItem != NULL)
+		if (activeItem != nullptr)
 			if (Weapon* weapon = dynamic_cast<Weapon *>(activeItem)) // If object is typeof weapon
 			{
 				unit->decrease_health(dmg + weapon->get_damage());
@@ -188,7 +188,7 @@ int Enemy::attack(Unit *unit, int dmg)
 
 int Enemy::heal(Unit *unit)
 {
-	if (unit != NULL)
+	if (unit != nullptr)
 	{
 		unit->increase_health(healStats->heal);
 		return unit->get_health();
@@ -198,7 +198,7 @@ int Enemy::heal(Unit *unit)
 
 int Enemy::heal(Unit *unit, int healAmount)
 {
-	if (unit != NULL)
+	if (unit != nullptr)
 	{
 		unit->increase_health(healAmount);
 		return unit->get_health();
@@ -213,7 +213,7 @@ void Enemy::die()
 
 int Enemy::get_gold()
 {
-	if (reward != NULL) {
+	if (reward != nullptr) {
 		return reward->gold;
 	}
 	return NULL;
@@ -221,7 +221,7 @@ int Enemy::get_gold()
 
 int Enemy::get_exp()
 {
-	if (reward != NULL) {
+	if (reward != nullptr) {
 		return reward->exp;
 	}
 	return NULL;

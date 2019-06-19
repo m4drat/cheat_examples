@@ -5,7 +5,7 @@
 class Weapon : public Item
 {
 protected:
-	int damage;
+	int damage = 0;
 public:
 	enum WeaponType
 	{
