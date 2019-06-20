@@ -37,12 +37,12 @@ Player::Player(std::string name)
 	damageStats->minDamage = 1;
 }
 
-Player::Player(std::string name, int healt, int damage)
+Player::Player(std::string name, int health, int damage)
 {
 	isAlive = true;
 	handle = name;
 
-	healStats->health = healt;
+	healStats->health = health;
 	healStats->maxHealth = 40;
 	healStats->minHealth = 0;
 	healStats->heal = 0;
@@ -53,14 +53,14 @@ Player::Player(std::string name, int healt, int damage)
 	damageStats->minDamage = 1;
 }
 
-Player::Player(std::string name, int healt, int maxHealth, int minHealth, int heal, int maxHeal, int maxDamage, int minDamage, int damage)
+Player::Player(std::string name, int health, int maxHealth, int minHealth, int heal, int maxHeal, int maxDamage, int minDamage, int damage)
 {
 	init();
 
 	isAlive = true;
 	handle = name;
 
-	healStats->health = healt;
+	healStats->health = health;
 	healStats->maxHealth = maxHealth;
 	healStats->minHealth = minHealth;
 	healStats->heal = heal;

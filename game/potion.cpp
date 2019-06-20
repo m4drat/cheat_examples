@@ -10,6 +10,7 @@ Potion::~Potion()
 
 }
 
-void Potion::use(Unit *unit)
+int Potion::use(Unit *unit)
 {
+	return 0;
 }

@@ -16,7 +16,7 @@ public:
 
 	Potion();
 	~Potion();
-	virtual void use(Unit *unit);
+	virtual int use(Unit *unit);
 
 	Potion::PotionType get_type() {};
 };

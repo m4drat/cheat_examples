@@ -41,7 +41,7 @@ Enemy::Enemy() // generate random enemy with random item
 	damageStats->damage = rand() % maxDamageRandom + minDamageRandom;
 }
 
-Enemy::Enemy(std::string name, int healt, int damage)
+Enemy::Enemy(std::string name, int health, int damage)
 {
 	init();
 
@@ -50,7 +50,7 @@ Enemy::Enemy(std::string name, int healt, int damage)
 	isAlive = true;
 	handle = name;
 
-	healStats->health = healt;
+	healStats->health = health;
 	healStats->maxHealth = 40;
 	healStats->minHealth = 0;
 	healStats->heal = 1;
@@ -61,7 +61,7 @@ Enemy::Enemy(std::string name, int healt, int damage)
 	damageStats->minDamage = 1;
 }
 
-Enemy::Enemy(std::string name, int healt, int maxHealth, int minHealth, int heal, int maxHeal, int maxDamage, int minDamage, int damage)
+Enemy::Enemy(std::string name, int health, int maxHealth, int minHealth, int heal, int maxHeal, int maxDamage, int minDamage, int damage)
 {
 	init();
 
@@ -70,7 +70,7 @@ Enemy::Enemy(std::string name, int healt, int maxHealth, int minHealth, int heal
 	isAlive = true;
 	handle = name;
 
-	healStats->health = healt;
+	healStats->health = health;
 	healStats->maxHealth = maxHealth;
 	healStats->minHealth = minHealth;
 	healStats->heal = heal;

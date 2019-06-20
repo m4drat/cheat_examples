@@ -9,11 +9,11 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace unittests
 {
-	TEST_CLASS(UnitTest1)
+	TEST_CLASS(TestGameLogic)
 	{
 	public:
 
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(TestAttack)
 		{
 			std::string pName = "AAAAAAAA";
 			int pHealth = 20;
@@ -28,7 +28,7 @@ namespace unittests
 			Assert::AreEqual(eHealth - pDmg, player->attack(enemy));
 		}
 
-		TEST_METHOD(TestMethod2)
+		TEST_METHOD(TestAttackUnderZero)
 		{
 			std::string pName = "madrat";
 			int pHealth = 2023;
@@ -41,6 +41,36 @@ namespace unittests
 			Enemy *enemy = new Enemy(eName, eHealth, eDmg);
 
 			Assert::AreEqual(0, player->attack(enemy));
+		}
+
+		TEST_METHOD(TestPlayerEquip)
+		{
+			std::string pName = "madrat";
+			int pHealth = 240;
+			int pDmg = 64;
+			Player *player = new Player(pName, pHealth, pDmg);
+
+			Bow *bow = new Bow();
+
+			player->equip(bow);
+
+			Item *equipedItem = player->get_active_item();
+
+			Assert::IsNotNull(equipedItem);
+		}
+
+		TEST_METHOD(TestHealUsingPotion)
+		{
+			std::string pName = "madrat";
+			int pHealth = 240;
+			int pDmg = 64;
+			Player *player = new Player(pName, pHealth, pHealth * 2, 0, 0, 0, pDmg * 2, 1, pDmg);
+
+			HealPotion* healPotion = new HealPotion();
+
+			healPotion->use(player);
+
+			Assert::AreEqual(pHealth + healPotion->get_heal_val(), player->get_health());
 		}
 	};
 }
