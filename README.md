@@ -10,11 +10,8 @@
 Sooo, thit is the main part of the project. The game is a turn-based RPG-like game with implemented inventory system, as well as battle system. 
 __At the beginning you have 5 default options to use:__
 - ```[c]reate``` - create new player with default stats (63hp, 4dmg). 
-![Game2](https://i.imgur.com/HoD4JF0.png)
 - ```[f]ight``` - fight with random enemy (only active, if you have created new player before)
-![Imgur](https://i.imgur.com/ais1Etk.png)
 - ```[s]tats``` - view your player stats
-![Imgur](https://i.imgur.com/h5oIWQZ.png)
 - ```[i]inventory``` - displays your inventory or allows you to select a new active item. (if player isn't empty)
 - ```[e]xit``` - leave game.
 ##### fight mode
