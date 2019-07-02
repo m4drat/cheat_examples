@@ -45,6 +45,9 @@ public:
 
 	std::string get_handle();
 	int get_health();
+
+	//void* get_health_ptr();
+	
 	int get_heal();
 	int get_damage();
 	bool get_isAlive();

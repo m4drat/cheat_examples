@@ -14,10 +14,10 @@ public:
 		bow,
 		last
 	};
-	WeaponType weaponType;
+	Weapon::WeaponType weaponType = Weapon::WeaponType::none;
 
 	Weapon::WeaponType get_type();
 	std::string get_type_str();
 	int get_damage();
-	static WeaponType random_weapon();
+	static Weapon::WeaponType random_weapon();
 };

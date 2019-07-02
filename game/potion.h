@@ -12,7 +12,7 @@ public:
 		heal,
 		last
 	};
-	PotionType potionType;
+	Potion::PotionType potionType = Potion::PotionType::none;
 
 	Potion();
 	~Potion();

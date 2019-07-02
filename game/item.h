@@ -16,7 +16,7 @@ public:
 		legendary,
 		last
 	};
-	Item::Rarity rarity;
+	Item::Rarity rarity = Item::Rarity::none;
 
 	std::string get_desc();
 	Item::Rarity get_rarity();

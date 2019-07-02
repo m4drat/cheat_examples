@@ -18,6 +18,8 @@ HealPotion::HealPotion()
 		rarity = Rarity::epic;
 	else if (healval == 9)
 		rarity = Rarity::legendary;
+	else
+		rarity = Rarity::none;
 }
 
 HealPotion::~HealPotion()

@@ -31,6 +31,13 @@ int Unit::get_health()
 	return NULL;
 }
 
+//void* Unit::get_health_ptr()
+//{
+//	if (healStats != nullptr)
+//		return &(healStats->health);
+//	return NULL;
+//}
+
 int Unit::get_heal()
 {
 	if (healStats != nullptr)

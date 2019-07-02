@@ -35,6 +35,9 @@ int main(int argc, char *argv[])
 				std::cout << "[*] Your stats\n";
 				std::cout << "[*]     Handle: " + player->get_handle() + "\n";
 				std::cout << "[*]     Health: " + std::to_string(player->get_health()) + "\n";
+			
+				//printf("[+] player health address: 0x%p\n", player->get_health_ptr());
+				
 				std::cout << "[*]     Heal:   " + std::to_string(player->get_heal()) + "\n";
 				std::cout << "[*]     Damage: " + std::to_string(player->get_damage()) + "\n";
 				std::cout << "[*]     Gold:   " + std::to_string(player->get_gold()) + "\n";
@@ -127,15 +130,15 @@ int main(int argc, char *argv[])
 
 							if (std::stoi(choice) > 0 && std::stoi(choice) <= player->get_inventory()->size())
 							{
-								if ((*player->get_inventory())[std::stoi(choice) - 1] != nullptr)
+								if ((*player->get_inventory())[std::stoull(choice) - 1] != nullptr)
 								{
-									if (HealPotion* healPotion = dynamic_cast<HealPotion *>((*player->get_inventory())[std::stoi(choice) - 1]))
+									if (HealPotion* healPotion = dynamic_cast<HealPotion *>((*player->get_inventory())[std::stoull(choice) - 1]))
 									{
 										healPotion->use(player);
 										std::cout << "[+] You cured yourself for " + std::to_string(healPotion->get_heal_val()) + " hitpoints\n";
 										std::cout << "[+] Your hp: " + std::to_string(player->get_health()) + "\n";
 
-										delete (*player->get_inventory())[std::stoi(choice) - 1];
+										delete (*player->get_inventory())[std::stoull(choice) - 1];
 										player->get_inventory()->erase(player->get_inventory()->begin() + std::stoi(choice) - 1);
 									}
 									else {
@@ -292,9 +295,9 @@ int main(int argc, char *argv[])
 						std::cout << "\n";
 						if (std::stoi(choice) > 0 
 							&& std::stoi(choice) <= player->get_inventory()->size() 
-							&& (*player->get_inventory())[std::stoi(choice) - 1] != nullptr)
+							&& (*player->get_inventory())[std::stoull(choice) - 1] != nullptr)
 						{
-							if (HealPotion* healPotion = dynamic_cast<HealPotion *>((*player->get_inventory())[std::stoi(choice) - 1]))
+							if (HealPotion* healPotion = dynamic_cast<HealPotion *>((*player->get_inventory())[std::stoull(choice) - 1]))
 							{
 								std::cout << "[-] Cannot select heal potion as active item\n[-] Potions can be used only in battle\n\n";
 							}
@@ -303,11 +306,11 @@ int main(int argc, char *argv[])
 								{
 									Item *temp;
 									temp = player->get_active_item();
-									player->equip((*player->get_inventory())[std::stoi(choice) - 1]);
-									(*player->get_inventory())[std::stoi(choice) - 1] = temp;
+									player->equip((*player->get_inventory())[std::stoull(choice) - 1]);
+									(*player->get_inventory())[std::stoull(choice) - 1] = temp;
 								}
 								else {
-									player->equip((*player->get_inventory())[std::stoi(choice) - 1]);
+									player->equip((*player->get_inventory())[std::stoull(choice) - 1]);
 									(*player->get_inventory()).pop_back();
 								}
 								std::cout << "[+] Successfully selected!\n\n";

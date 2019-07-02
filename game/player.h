@@ -13,7 +13,6 @@ protected:
 		int toltalKilled = 0;
 	};
 	Properties *properties = nullptr;
-	size_t signature = 0xdecaadfe;
 
 public:
 	Player(); // Default constructor

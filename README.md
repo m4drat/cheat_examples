@@ -4,7 +4,7 @@
 | game | Main Project. Simple Console RPG-like game with basic inventory and fight systems. | ```yes```|
 | gameUnitTests | Unit tests for game. | ```yes``` |
 | injector | Simple dll injector (using ```CreateRemoteThread``` with ```LoadLibraryA```)  | ```yes```|
-| internalCheat | DLL-library which can be injected in target process using ```injector``` | ```no```|
+| internalCheat | DLL-library which can be injected in target process using ```injector``` | ```yes```|
 | externalCheat | Simple external cheat, which uses ```ReadProcessMemory``` and ```WriteProcessMemory``` | ```no```
  # Game
 Sooo, thit is the main part of the project. The game is a turn-based RPG-like game with implemented inventory system, as well as battle system. 
