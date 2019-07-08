@@ -124,12 +124,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ExternalCheat.cpp" />
     <ClCompile Include="getpid.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PatternScan.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ExternalCheat.h" />
     <ClInclude Include="getpid.h" />
-    <ClInclude Include="includes.h" />
+    <ClInclude Include="PatternScan.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

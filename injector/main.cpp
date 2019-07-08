@@ -51,7 +51,7 @@ int main()
 		// Allocate memory for dll path in remote process
 		LPVOID psMemoryLibPath = VirtualAllocEx(psHandle, NULL, MAX_PATH, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
 			
-		if (psMemoryLibPath != NULL)
+		if (psMemoryLibPath != nullptr)
 		{
 			// Write DLL path to newly allocated memory
 			WriteProcessMemory(psHandle, psMemoryLibPath, fullLibPath, MAX_PATH, &fullLibPathSize);
@@ -61,6 +61,8 @@ int main()
 
 			// Call LoadLibraryA in remote process
 			CreateRemoteThread(psHandle, NULL, NULL, (LPTHREAD_START_ROUTINE)loadLibraryA, psMemoryLibPath, NULL, NULL);
+
+			printf("[+] Remote thread in process with pid: %d created!\n", pids[0]);
 		}
 		else {
 			std::wcout << "[-] Something went wrong.\n";

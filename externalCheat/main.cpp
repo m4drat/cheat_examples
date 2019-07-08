@@ -1,28 +1,39 @@
-#include "includes.h"
+#include <iostream>
+#include <Windows.h>
+
 #include "getpid.h"
+#include "ExternalCheat.h"
 
 int main()
 {
-	// Find PID
-	// Get process handle
-
 	std::wstring psName;
-	std::wstring inGameName;
+	std::vector <DWORD> pids;
 
-	std::wcout << "Enter process name: ";
-	std::wcin >> psName;
-
-	std::wcout << "Searching pids of process with name: " << psName << std::endl;
-
-	int cnt = 0;
-	for (DWORD pid : get_pid_by_name(psName))
+	for (;;)
 	{
-		cnt++;
-		std::wcout << "[+] " << cnt << ". PID: " << pid << std::endl;
+		std::wcout << "[+] Enter process name: ";
+		std::wcin >> psName;
+		std::wcout << "[+] Searching pids of process with name: " << psName << std::endl;
+
+		// Get Process PID by its name
+		pids = get_pid_by_name(psName);
+
+		if (pids.size() == 0) {
+			std::wcout << "[-] Cannot find any process!\n";
+		}
+		else {
+			std::wcout << "[+] 1. PID: " << pids[0] << std::endl;
+			break;
+		}
 	}
-	if (cnt == 0)
-		std::wcout << "[-] Cannot find any process!\n";
 	
-	std::wcin >> psName;
-	return 0;
+	ExternalCheat* cheat = ExternalCheat::get_instance();
+	if (cheat->init(pids[0]))
+	{
+		std::wcout << "[+][CH] Cheat loaded successfully!\n";
+		cheat->exec();
+	}
+	else {
+		std::wcout << "[-] Player Signature Cannot be found!" << "\n> ";
+	}
 }

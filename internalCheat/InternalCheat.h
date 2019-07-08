@@ -18,7 +18,7 @@ public:
 	// Read a value from memory and put it in Value
 	// Returns true on success, false on failure
 	template <class T>
-	inline bool ReadMem(DWORDLONG dwAddress, T& Value)
+	static bool ReadMem(DWORDLONG dwAddress, T& Value)
 	{
 		return ReadMemory(reinterpret_cast<LPVOID>(dwAddress), Value, sizeof(T), NULL) == TRUE;
 	}
@@ -28,7 +28,7 @@ public:
 	template <class T>
 	inline bool WriteMem(DWORDLONG dwAddress, const T& Value)
 	{
-		return WriteMemory(reinterpret_cast<LPVOID>(dwAddress), Value, sizeof(T), NULL) == TRUE;
+		return WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<LPVOID>(dwAddress), reinterpret_cast<void*>(Value), sizeof(T), NULL) == TRUE;
 	}
 
 private:

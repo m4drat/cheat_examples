@@ -113,4 +113,3 @@ DWORDLONG PatternScan::find_pattern_internal_in_range(std::string pattern, const
 	}
 	return NULL;
 }
-
