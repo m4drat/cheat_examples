@@ -59,7 +59,7 @@ int main()
 			// Get address of LoadLibraryA
 			FARPROC loadLibraryA = GetProcAddress(GetModuleHandle("kernel32"), "LoadLibraryA");
 
-			// Call LoadLibraryA in remote process
+			// Call LoadLibraryA in remote process to load DLL
 			CreateRemoteThread(psHandle, NULL, NULL, (LPTHREAD_START_ROUTINE)loadLibraryA, psMemoryLibPath, NULL, NULL);
 
 			printf("[+] Remote thread in process with pid: %d created!\n", pids[0]);

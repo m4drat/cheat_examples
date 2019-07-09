@@ -57,7 +57,7 @@ int ExternalCheat::exec()
 		int newHp = INT_MAX;
 		if (!WriteMem(activePsHandle, reinterpret_cast<DWORDLONG>(mem_region) + hpOffset, &newHp))
 		{
-			std::wcout << "[+] Cannot write process memory!\n";
+			std::wcout << "[-] Cannot write process memory!\n";
 		}
 
 		// Sleep For 5 seconds

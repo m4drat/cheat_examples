@@ -25,10 +25,10 @@ int InternalCheat::init()
 
 	mem_region = reinterpret_cast<void*>(PatternScan::find_pattern_internal("50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FD FD FD FD"));
 	if (mem_region != NULL)
-		printf("\n[+] 1. Found player signature! ptr: 0x%p\n", mem_region);
+		printf("[+][CH] Found player signature! ptr: 0x%p\n", mem_region);
 	else
 	{
-		printf("\n[-] 1. Cannot find player signature! Aborting.\n> ");
+		printf("[-][CH] Cannot find player signature! Aborting.\n> ");
 		return NULL;
 	}
 
