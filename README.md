@@ -77,12 +77,12 @@ This version uses ```ReadProcessMemory``` and ```WriteProcessMemory``` to manipu
 // Open handle to process with full access
 activePsHandle = OpenProcess(PROCESS_ALL_ACCESS, false, pid);
 ```
-2. If everything is good cheat trying to find pattern in memory space of the target process. (At this time using different technique which finds all memory regions of the process, and then iterates over them)
+2. If everything is good cheat trying to find pattern in memory space of the target process. (At this time using different technique which finds all memory regions of the process, and then iterate over them)
 ```c++
 // ExternalCheat.cpp
 mem_region = reinterpret_cast<void*>(PatternScan::find_pattern_external(activePsHandle, "50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FD FD FD FD"));
 ```
-3. If cheat manages to find a pattern. It will try rewrite ```hp``` value with ```INT_MAX```.
+3. If cheat manages to find a pattern. It will try to rewrite ```hp``` value with ```INT_MAX```.
 ```c++
 while (true)
 {
