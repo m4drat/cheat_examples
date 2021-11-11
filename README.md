@@ -1,5 +1,5 @@
 
-# Architecure
+# Architecture
 | Project | Description |ready to work|
 | ------ | -------------|-------------|
 | game | Main Project. Simple Console RPG-like game with basic inventory and fight systems. | ```yes```|
